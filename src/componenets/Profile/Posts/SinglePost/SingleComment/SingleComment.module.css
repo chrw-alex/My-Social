@@ -1,0 +1,81 @@
+.singleComment {
+  display: flex;
+  padding-left: 70px;
+  margin-bottom: 20px;
+}
+
+.commentImg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.commentMain {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  border-bottom: 1px solid lightgray;
+}
+
+.commentInfo {
+  max-width: 80%;
+}
+
+.commentUserName {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.commentDate {
+  margin-bottom: 16px;
+  font-size: 14px;
+  opacity: .6;
+}
+
+.commentActions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.likeActions {
+  display: flex;
+}
+
+.commentHeartIcon,
+.commentDeleteIcon,
+.likesCount {
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.commentHeartIcon,
+.commentDeleteIcon {
+  opacity: .2;
+  transition: opacity .2s ease;
+}
+
+.commentHeartIcon {
+  margin-left: 6px;
+}
+
+.commentHeartIcon:hover,
+.commentDeleteIcon:hover {
+  opacity: 1;
+}
+
+.commentHeartIconActive {
+  color: #9ACD32;
+  opacity: 1;
+}
+
+.likesCount {
+  font-size: 16px;
+  opacity: .6;
+  transform: translateY(-3px);
+}

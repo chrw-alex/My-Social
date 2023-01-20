@@ -1,0 +1,60 @@
+.comments {
+  display: none;
+}
+
+.commentsVisible {
+  display: flex;
+  align-items: center;
+  padding-left: 70px;
+}
+
+.commentsFormImg {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.commentsForm {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commentsTextarea {
+  width: 90%;
+  padding-top: 6px;
+  padding-left: 10px;
+  background-color: rgb(245, 245, 245);
+  border: none;
+  border-radius: 6px;
+  resize: none;
+}
+
+.commentsTextarea:focus {
+  border: none;
+  outline: 1px solid rgb(223, 221, 221);
+}
+
+.sendCommentButton {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.sendIcon {
+  width: 26px;
+  height: 26px;
+  margin-left: auto;
+  color: rgb(0, 0, 0);
+  opacity: .4;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+
+.sendIcon:hover {
+  opacity: 1;
+}

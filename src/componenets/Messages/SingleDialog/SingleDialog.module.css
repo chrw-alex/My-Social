@@ -1,0 +1,21 @@
+.singleDialog {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.singleDialogTop {
+  height: 60%;
+  overflow-y: auto;
+  margin-bottom: 40px;
+}
+
+.MessagesForm {
+  height: 40%;
+  margin-top: auto;
+
+}

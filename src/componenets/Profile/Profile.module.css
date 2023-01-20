@@ -1,0 +1,13 @@
+.profile {
+  width: 85%;
+}
+
+.profileInner {
+  width: 70%;
+}
+
+.profileImg {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 20px;
+}

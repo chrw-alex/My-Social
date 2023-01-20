@@ -1,0 +1,111 @@
+.singlePost {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.singlePostInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.singlePostImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.singlePostInfo {
+  width: 80%;
+}
+
+.postUserName {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.postDate {
+  font-size: 14px;
+  opacity: .6;
+}
+
+.deleteIcon {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  color: rgb(0, 0, 0);
+  opacity: 0.2;
+  cursor: pointer;
+
+}
+
+.deleteIcon:hover {
+  opacity: 1;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+}
+
+.postText {
+  padding-left: 70px;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  padding-left: 66px;
+  margin-bottom: 20px;
+}
+
+.likeAction,
+.commentAction {
+  display: flex;
+  padding: 3px 8px;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+}
+
+.likeAction {
+  margin-right: 16px;
+}
+
+.likesCount,
+.commentsCount {
+  margin-left: 10px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  opacity: .9;
+}
+
+.heartIcon,
+.commentIcon {
+  width: 22px;
+  height: 22px;
+  color: rgb(0, 0, 0);
+  opacity: .4;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+
+.heartIcon {
+  transform: translateY(1px);
+}
+
+.heartIcon:hover {
+  opacity: 1;
+}
+
+.heartIconActive {
+  color: #9ACD32;
+  opacity: 1;
+}
+
+.commentIcon:hover {
+  opacity: 1;
+}

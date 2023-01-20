@@ -1,0 +1,32 @@
+.nav {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  margin-right: 20px;
+  background-color: #9ACD32;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nav div {
+  margin-bottom: 10px;
+}
+
+.link,
+.settingsLink {
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: text-decoration .2s ease;
+}
+
+.link:hover,
+.settingsLink:hover {
+  text-decoration: underline;
+}
+
+.separatedDiv {
+  margin-top: 30px;
+}

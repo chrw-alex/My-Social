@@ -1,0 +1,53 @@
+.singleMessage {
+  width: 80%;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.messageImg {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.messageMain {
+  width: 100%;
+}
+
+.messageInfo,
+.messageTextAndDelete {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.messageUserName {
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.messageDate {
+  font-size: 14px;
+  opacity: .6;
+}
+
+.messageText {
+  font-size: 14px;
+  opacity: .9;
+}
+
+.messageDeleteIcon {
+  color: rgb(0, 0, 0);
+  opacity: .2;
+  margin-left: auto;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+
+.messageDeleteIcon:hover {
+  opacity: 1;
+}

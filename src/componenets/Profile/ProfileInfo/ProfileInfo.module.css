@@ -1,0 +1,9 @@
+.profileInfo {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.profileAvatar {
+  height: 200px;
+  margin-right: 20px;
+}

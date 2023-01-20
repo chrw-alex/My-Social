@@ -1,0 +1,36 @@
+.users {
+  width: 85%;
+  height: 100%;
+}
+
+.usersInner {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.usersTitle {
+  margin-bottom: 26px;
+  font-size: 20px;
+  color: rgb(128, 126, 126, .7);
+  letter-spacing: 1px;
+}
+
+.showMore {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.showMoreButton {
+  background-color: #9ACD32;
+  padding: 10px 28px;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+
+.showMoreButton:hover {
+  background-color: #4f6919;
+}

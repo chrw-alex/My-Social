@@ -1,0 +1,115 @@
+@keyframes ldio-2dpz1uksvpd {
+  0% {
+    opacity: 1
+  }
+
+  100% {
+    opacity: 0
+  }
+}
+
+.ldio-2dpz1uksvpd div {
+  left: 52.17px;
+  top: 26.64px;
+  position: absolute;
+  animation: ldio-2dpz1uksvpd linear 0.78125s infinite;
+  background: #9acd32;
+  width: 6.66px;
+  height: 13.32px;
+  border-radius: 3.33px / 6.66px;
+  transform-origin: 3.33px 28.860000000000003px;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -0.7161458333333334s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -0.6510416666666667s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.5859375s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.5208333333333334s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.4557291666666667s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.390625s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.32552083333333337s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.2604166666666667s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.1953125s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.13020833333333334s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.06510416666666667s;
+  background: #9acd32;
+}
+
+.ldio-2dpz1uksvpd div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+  background: #9acd32;
+}
+
+.loadingio-spinner-spinner-8mcur0mwzqu {
+  margin: 0 auto;
+  width: 111px;
+  height: 111px;
+  display: block;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.ldio-2dpz1uksvpd {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+
+.ldio-2dpz1uksvpd div {
+  box-sizing: content-box;
+}

@@ -21,6 +21,13 @@
   text-align: center;
 }
 
+.navLink {
+  padding: 0;
+  color: #000;
+  text-decoration: none;
+}
+
 .singleFollowingName {
   font-size: 12px;
+  word-wrap: break-word;
 }

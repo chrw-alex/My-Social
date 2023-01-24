@@ -7,7 +7,7 @@ const Nav = () => {
     <div className={style.nav}>
       <nav>
         <div>
-          <NavLink to='/' className={style.link}>Profile</NavLink>
+          <NavLink to='/profile' className={style.link}>Profile</NavLink>
         </div>
         <div>
           <NavLink to='/messages' className={style.link}>Messages</NavLink>

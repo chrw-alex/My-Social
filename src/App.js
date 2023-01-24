@@ -20,7 +20,7 @@ function App() {
         <div className='main'>
           <Nav />
           <Routes>
-            <Route path='/' element={<Profile />} />
+            <Route path='/profile/:id' element={<Profile />} />
             <Route path='/messages/*' element={<Messages />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />

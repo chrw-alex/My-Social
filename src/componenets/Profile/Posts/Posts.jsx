@@ -53,7 +53,7 @@ const Posts = () => {
 
   return (
     <div className={style.posts}>
-      <h3 className={style.myPostsTitle}>My posts</h3>
+      <h3 className={style.myPostsTitle}>Posts</h3>
       <PostsForm addPost={addPostHandler} />
       {posts.map(({ id, text, likesCount, commentsCount, isLiked, date, isCommentButtonClicked, isCommented }) => {
         return (

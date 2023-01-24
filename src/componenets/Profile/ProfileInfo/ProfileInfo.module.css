@@ -1,9 +1,39 @@
 .profileInfo {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 100px;
 }
 
 .profileAvatar {
+  width: 200px;
   height: 200px;
+  object-fit: cover;
   margin-right: 20px;
+}
+
+.userName {
+  font-size: 22px;
+  color: rgb(128, 126, 126);
+  letter-spacing: 1px;
+  margin: 0;
+  margin-bottom: 14px;
+}
+
+.infoDetails {
+  margin-bottom: 4px;
+  font-size: 16px;
+  color: #000;
+}
+
+.statusDetails {
+  margin-bottom: -2px;
+}
+
+.infoTitle {
+  font-size: 16px;
+  color: rgb(128, 126, 126);
+  margin-right: 12px;
+}
+
+.jobIcon {
+  transform: translateY(6px);
 }

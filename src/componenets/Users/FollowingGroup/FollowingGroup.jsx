@@ -9,7 +9,7 @@ const FollowingGroup = ({ following }) => {
 
         {following.map(({ id, name, photos }) => {
           return (
-            <SingleFollowing photos={photos} name={name} key={id} />
+            <SingleFollowing photos={photos} name={name} key={id} id={id} />
           )
         })}
       </div>

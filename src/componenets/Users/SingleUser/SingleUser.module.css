@@ -41,6 +41,11 @@
   justify-content: space-between;
 }
 
+.navLink {
+  color: #000;
+  text-decoration: none;
+}
+
 .userName {
   font-size: 18px;
   margin: 0;

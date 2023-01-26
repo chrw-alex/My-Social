@@ -11,7 +11,7 @@ import SingleComment from './SingleComment/SingleComment';
 
 import style from './SinglePost.module.css';
 
-const SinglePost = ({ text, date, likesCount, commentsCount, isComented, isCommentButtonClicked, id, isLiked, likePostHandler, commentButtonHandler, deletePostHandler }) => {
+const SinglePost = ({ text, date, likesCount, commentsCount, isCommentButtonClicked, id, isLiked, likePostHandler, commentButtonHandler, deletePostHandler }) => {
 
   const [comments, setComments] = useState([]);
 

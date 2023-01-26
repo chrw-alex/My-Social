@@ -16,6 +16,7 @@ const Profile = () => {
   const [error, setError] = useState('');
   const params = useParams();
 
+
   useEffect(() => {
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${params.id}`)
       .then(response => {

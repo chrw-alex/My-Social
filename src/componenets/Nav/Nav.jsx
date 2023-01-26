@@ -2,12 +2,12 @@ import { NavLink } from 'react-router-dom';
 
 import style from './Nav.module.css';
 
-const Nav = () => {
+const Nav = ({ authorizedUser, isAuthorized }) => {
   return (
     <div className={style.nav}>
       <nav>
         <div>
-          <NavLink to='/profile' className={style.link}>Profile</NavLink>
+          <NavLink to={isAuthorized ? `/profile/${authorizedUser.id}` : '/login'} className={style.link}>Profile</NavLink>
         </div>
         <div>
           <NavLink to='/messages' className={style.link}>Messages</NavLink>

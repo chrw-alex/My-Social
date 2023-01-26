@@ -3,14 +3,16 @@ import Button from '../../Button/Button';
 
 import style from './SingleUser.module.css';
 
-const SingleUser = ({ id, src, name, status, followed, photos, toggleFollowButton }) => {
+const SingleUser = ({ id, name, status, followed, photos, followUser, unfollowUser }) => {
   return (
     <div className={style.singleUser}>
       <div className={style.userLeft}>
         <NavLink to={`/profile/${id}`} >
           <img className={style.userImg} src={photos.small || 'https://avatars.mds.yandex.net/i?id=384a55164f8927b70d0d86e5dd1ec4a6ba880567-6997554-images-thumbs&n=13'} alt="userImg" />
         </NavLink>
-        <Button className={style.followBtn} text={followed ? 'Unfollow' : 'Follow'} onClick={() => toggleFollowButton(id, photos, name, followed)} />
+        {followed
+          ? <Button className={style.followBtn} text="Unfollow" onClick={() => unfollowUser(id)} />
+          : <Button className={style.followBtn} text="Follow" onClick={() => followUser(id)} />}
       </div>
       <div className={style.userRight}>
         <div>

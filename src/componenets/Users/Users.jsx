@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Button from '../Button/Button';
 import SingleUser from './SingleUser/SingleUser';
-import FollowingGroup from './FollowingGroup/FollowingGroup';
+// import FollowingGroup from './FollowingGroup/FollowingGroup';
 import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
 
@@ -11,7 +12,7 @@ import style from './Users.module.css';
 const Users = () => {
 
   const [users, setUsers] = useState([]);
-  const [following, setFollowing] = useState([]);
+  // const [following, setFollowing] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -19,10 +20,9 @@ const Users = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=5`)
-      .then(response => response.json())
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=5`, { withCredentials: true })
       .then((response) => {
-        setUsers(response.items)
+        setUsers(response.data.items)
       })
       .catch((error) => setError(error.message))
       .finally(() => {
@@ -31,24 +31,49 @@ const Users = () => {
       })
   }, [])
 
-  const toggleFollowButton = (id, photos, name, followed) => {
-
-    let newFollowing = {
-      id: id,
-      photos: photos,
-      name: name,
-    }
-
-    followed
-      ? setFollowing(following.filter((singleFollowing) => singleFollowing.id !== id))
-      : setFollowing([newFollowing, ...following])
-
-    setUsers(users.map((user) => {
-      return user.id === id
-        ? { ...user, followed: !user.followed }
-        : { ...user }
-    }))
+  const followUser = (id) => {
+    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, { withCredentials: true, headers: { 'API-KEY': '2d03c615-d6dd-4611-aea7-50381ef37ebd' } })
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          setUsers(users.map((user) => {
+            return user.id === id
+              ? { ...user, followed: !user.followed }
+              : { ...user }
+          }))
+        }
+      })
   }
+
+  const unfollowUser = (id) => {
+    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, { withCredentials: true, headers: { 'API-KEY': '2d03c615-d6dd-4611-aea7-50381ef37ebd' } })
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          setUsers(users.map((user) => {
+            return user.id === id
+              ? { ...user, followed: !user.followed }
+              : { ...user }
+          }))
+        }
+      })
+  }
+
+  // const toggleFollowButton = (id, photos, name, followed) => {
+  //   let newFollowing = {
+  //     id: id,
+  //     photos: photos,
+  //     name: name,
+  //   }
+
+  //   followed
+  //     ? setFollowing(following.filter((singleFollowing) => singleFollowing.id !== id))
+  //     : setFollowing([newFollowing, ...following])
+
+  //   setUsers(users.map((user) => {
+  //     return user.id === id
+  //       ? { ...user, followed: !user.followed }
+  //       : { ...user }
+  //   }))
+  // }
 
   const showMoreHandler = () => {
     setIsShowMoreLoading(true)
@@ -70,14 +95,14 @@ const Users = () => {
 
   return (
     <div className={style.users}>
-      <FollowingGroup following={following} />
+      {/* <FollowingGroup following={following} /> */}
       <div className={style.usersInner}>
         <h4 className={style.usersTitle}>Users</h4>
         {isLoading
           ? <Preloader />
           : (users.map(({ id, name, status, followed, photos }) => {
             return (
-              <SingleUser id={id} key={id} name={name} photos={photos} status={status} followed={followed} toggleFollowButton={toggleFollowButton} />
+              <SingleUser id={id} key={id} name={name} photos={photos} status={status} followed={followed} followUser={followUser} unfollowUser={unfollowUser} />
             )
           }))}
         <div className={style.showMore}>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getUsers, postFollow, deleteFollow, showMore } from '../../api/api';
 
 import Button from '../Button/Button';
 import SingleUser from './SingleUser/SingleUser';
@@ -20,9 +20,9 @@ const Users = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=5`, { withCredentials: true })
-      .then((response) => {
-        setUsers(response.data.items)
+    getUsers(1, 10)
+      .then((data) => {
+        setUsers(data.items)
       })
       .catch((error) => setError(error.message))
       .finally(() => {
@@ -33,7 +33,7 @@ const Users = () => {
 
   const followUser = (button, id) => {
     button.disabled = true
-    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, { withCredentials: true, headers: { 'API-KEY': '2d03c615-d6dd-4611-aea7-50381ef37ebd' } })
+    postFollow(id)
       .then(response => {
         if (response.data.resultCode === 0) {
           setUsers(users.map((user) => {
@@ -48,7 +48,7 @@ const Users = () => {
 
   const unfollowUser = (button, id) => {
     button.disabled = true
-    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, { withCredentials: true, headers: { 'API-KEY': '2d03c615-d6dd-4611-aea7-50381ef37ebd' } })
+    deleteFollow(id)
       .then(response => {
         if (response.data.resultCode === 0) {
           setUsers(users.map((user) => {
@@ -82,10 +82,9 @@ const Users = () => {
   const showMoreHandler = () => {
     setIsShowMoreLoading(true)
     setPageCount(pageCount + 1)
-    fetch(`https://social-network.samuraijs.com/api/1.0/users?page=${pageCount + 1}&count=5`)
-      .then(response => response.json())
-      .then((response) => {
-        setUsers([...users, ...response.items])
+    showMore(pageCount + 1, 10)
+      .then((data) => {
+        setUsers([...users, ...data.items])
       })
       .catch((error) => setError(error.message))
       .finally(() => setIsShowMoreLoading(false))

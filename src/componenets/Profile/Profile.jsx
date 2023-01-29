@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { getProfile } from '../../api/api';
 
 import Posts from './Posts/Posts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
@@ -18,9 +18,9 @@ const Profile = () => {
 
 
   useEffect(() => {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${params.id}`)
-      .then(response => {
-        setProfile(response.data)
+    getProfile(params.id)
+      .then(data => {
+        setProfile(data)
       })
       .catch((error) => setError(error.message))
       .finally(() => {

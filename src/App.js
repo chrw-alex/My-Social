@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import axios from 'axios';
+import { getMe } from './api/api';
 
 import Messages from './componenets/Messages/Messages';
 import Header from './componenets/Header/Header';
@@ -21,7 +21,7 @@ function App() {
   const [isAuthorized, setIsAuthorized] = useState(false)
 
   useEffect(() => {
-    axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', { withCredentials: true })
+    getMe()
       .then(response => {
         if (response.data.resultCode === 0) {
           setIsAuthorized(true)

@@ -34,6 +34,10 @@
   background-color: #4f6919;
 }
 
+.followBtn:disabled {
+  background-color: lightgray;
+}
+
 .userRight {
   width: 80%;
   padding-top: 10px;

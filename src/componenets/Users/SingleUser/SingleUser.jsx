@@ -11,8 +11,8 @@ const SingleUser = ({ id, name, status, followed, photos, followUser, unfollowUs
           <img className={style.userImg} src={photos.small || 'https://avatars.mds.yandex.net/i?id=384a55164f8927b70d0d86e5dd1ec4a6ba880567-6997554-images-thumbs&n=13'} alt="userImg" />
         </NavLink>
         {followed
-          ? <Button className={style.followBtn} text="Unfollow" onClick={() => unfollowUser(id)} />
-          : <Button className={style.followBtn} text="Follow" onClick={() => followUser(id)} />}
+          ? <Button className={style.followBtn} text="Unfollow" onClick={(event) => unfollowUser(event.target, id)} />
+          : <Button className={style.followBtn} text="Follow" onClick={(event) => followUser(event.target, id)} />}
       </div>
       <div className={style.userRight}>
         <div>

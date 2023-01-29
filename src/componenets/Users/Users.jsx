@@ -31,7 +31,8 @@ const Users = () => {
       })
   }, [])
 
-  const followUser = (id) => {
+  const followUser = (button, id) => {
+    button.disabled = true
     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, { withCredentials: true, headers: { 'API-KEY': '2d03c615-d6dd-4611-aea7-50381ef37ebd' } })
       .then(response => {
         if (response.data.resultCode === 0) {
@@ -42,9 +43,11 @@ const Users = () => {
           }))
         }
       })
+      .finally(() => button.disabled = false)
   }
 
-  const unfollowUser = (id) => {
+  const unfollowUser = (button, id) => {
+    button.disabled = true
     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, { withCredentials: true, headers: { 'API-KEY': '2d03c615-d6dd-4611-aea7-50381ef37ebd' } })
       .then(response => {
         if (response.data.resultCode === 0) {
@@ -55,6 +58,7 @@ const Users = () => {
           }))
         }
       })
+      .finally(() => button.disabled = false)
   }
 
   // const toggleFollowButton = (id, photos, name, followed) => {

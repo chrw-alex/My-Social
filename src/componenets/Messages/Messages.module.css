@@ -1,6 +1,6 @@
 .messages {
   width: 85%;
-  height: 80vh;
+  height: 100vh;
   display: flex;
   justify-content: space-between;
 }

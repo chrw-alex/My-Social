@@ -1,9 +1,15 @@
 .profileInfo {
   display: flex;
+  width: 100%;
   margin-bottom: 100px;
 }
 
+.profileMainInfo {
+  width: 100%;
+}
+
 .userInfo {
+  width: auto;
   margin-bottom: 40px;
 }
 
@@ -15,11 +21,16 @@
 }
 
 .userName {
-  font-size: 22px;
+  font-size: 26px;
   color: rgb(128, 126, 126);
   letter-spacing: 1px;
   margin: 0;
-  margin-bottom: 14px;
+  margin-bottom: 4px;
+}
+
+.profileDetails {
+  padding-top: 10px;
+  border-top: 1px solid rgba(128, 126, 126, .6);
 }
 
 .infoDetails {

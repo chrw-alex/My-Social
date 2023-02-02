@@ -5,7 +5,7 @@ import Textarea from './../../../../Textarea/Textarea';
 
 import style from './CommentsForm.module.css';
 
-const CommentsForm = ({ isCommentButtonClicked, addCommentHandler }) => {
+const CommentsForm = ({ isCommentButtonClicked, addCommentHandler, authorisedUserProfile }) => {
 
   const [text, setText] = useState('');
 
@@ -17,7 +17,7 @@ const CommentsForm = ({ isCommentButtonClicked, addCommentHandler }) => {
 
   return (
     <div className={isCommentButtonClicked ? style.commentsVisible : style.comments}>
-      <img className={style.commentsFormImg} src="https://klike.net/uploads/posts/2022-07/1658727898_47.jpg" alt="userImg" />
+      <img className={style.commentsFormImg} src={authorisedUserProfile?.photos?.large || 'https://avatars.mds.yandex.net/i?id=384a55164f8927b70d0d86e5dd1ec4a6ba880567-6997554-images-thumbs&n=13'} alt="userImg" />
       <form className={style.commentsForm} onSubmit={onSubmitHandler}>
         <Textarea
           className={style.commentsTextarea}

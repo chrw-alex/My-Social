@@ -11,6 +11,7 @@ import Music from './componenets/Music/Music';
 import Users from './componenets/Users/Users';
 import Settings from './componenets/Settings/Settings';
 import LoginPage from './componenets/LoginPage/LoginPage';
+import Error from './componenets/Error/Error';
 
 import './App.css';
 
@@ -19,16 +20,24 @@ function App() {
 
   const [authorizedUser, setAuthorizedUser] = useState({})
   const [isAuthorized, setIsAuthorized] = useState(false)
+  const [error, setError] = useState('');
 
   useEffect(() => {
     getMe()
       .then(response => {
         if (response.data.resultCode === 0) {
           setIsAuthorized(true)
+          setAuthorizedUser(response.data.data)
         }
-        setAuthorizedUser(response.data.data)
       })
+      .catch((error) => setError(error.message))
   }, [])
+
+  if (error) {
+    return (
+      <Error />
+    )
+  }
 
   return (
     <BrowserRouter>
@@ -37,9 +46,9 @@ function App() {
         <div className='main'>
           <Nav authorizedUser={authorizedUser} isAuthorized={isAuthorized} />
           <Routes>
-            <Route path={'/profile/:id'} element={<Profile />} />
+            <Route path={'/profile/:id'} element={<Profile isAuthorized={isAuthorized} />} />
             <Route path='/login' element={<LoginPage />} />
-            <Route path='/messages/*' element={<Messages />} />
+            <Route path='/messages/*' element={<Messages isAuthorized={isAuthorized} />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/users' element={<Users />} />

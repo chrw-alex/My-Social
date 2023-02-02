@@ -40,3 +40,11 @@ export const getProfile = (id) => {
       return response.data
     })
 }
+
+export const getStatus = (id) => {
+  return instanse.get(`profile/status/${id}`)
+}
+
+export const changeStatus = (statusText) => {
+  return instanse.put(`profile/status`, { status: statusText })
+}

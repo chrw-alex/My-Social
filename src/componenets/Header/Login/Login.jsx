@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import style from './Login.module.css'
 
 const Login = ({ authorizedUser, isAuthorized }) => {
@@ -5,7 +6,9 @@ const Login = ({ authorizedUser, isAuthorized }) => {
     <div>
       {isAuthorized
         ? (<p className={style.userName}>{authorizedUser.login}</p>)
-        : <button className={style.login}>Login</button>}
+        : <button className={style.login}>
+          <NavLink className={style.loginLink} to='login'>Login</NavLink>
+        </button>}
     </div>
   )
 }

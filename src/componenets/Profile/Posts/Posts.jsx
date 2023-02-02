@@ -7,7 +7,7 @@ import SinglePost from './SinglePost/SinglePost';
 import style from './Posts.module.css';
 
 
-const Posts = () => {
+const Posts = ({ authorisedUserProfile }) => {
 
   const [posts, setPosts] = useState([]);
 
@@ -57,7 +57,7 @@ const Posts = () => {
       <PostsForm addPost={addPostHandler} />
       {posts.map(({ id, text, likesCount, commentsCount, isLiked, date, isCommentButtonClicked, isCommented }) => {
         return (
-          <SinglePost text={text} date={date} likesCount={likesCount} isCommentButtonClicked={isCommentButtonClicked} commentsCount={commentsCount} isCommented={isCommented} key={id} id={id} isLiked={isLiked} likePostHandler={likePostHandler} commentButtonHandler={commentButtonHandler} deletePostHandler={deletePostHandler} />
+          <SinglePost text={text} date={date} likesCount={likesCount} isCommentButtonClicked={isCommentButtonClicked} commentsCount={commentsCount} isCommented={isCommented} key={id} id={id} isLiked={isLiked} likePostHandler={likePostHandler} commentButtonHandler={commentButtonHandler} deletePostHandler={deletePostHandler} authorisedUserProfile={authorisedUserProfile} />
         )
       })}
     </div>

@@ -43,6 +43,7 @@ const Users = () => {
           }))
         }
       })
+      .catch((error) => setError(error.message))
       .finally(() => button.disabled = false)
   }
 
@@ -58,6 +59,7 @@ const Users = () => {
           }))
         }
       })
+      .catch((error) => setError(error.message))
       .finally(() => button.disabled = false)
   }
 

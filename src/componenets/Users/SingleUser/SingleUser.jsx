@@ -3,7 +3,7 @@ import Button from '../../Button/Button';
 
 import style from './SingleUser.module.css';
 
-const SingleUser = ({ id, name, status, followed, photos, followUser, unfollowUser }) => {
+const SingleUser = ({ id, name, status, followed, photos, followUser, unfollowUser, isAuthorized }) => {
   return (
     <div className={style.singleUser}>
       <div className={style.userLeft}>
@@ -12,7 +12,7 @@ const SingleUser = ({ id, name, status, followed, photos, followUser, unfollowUs
         </NavLink>
         {followed
           ? <Button className={style.followBtn} text="Unfollow" onClick={(event) => unfollowUser(event.target, id)} />
-          : <Button className={style.followBtn} text="Follow" onClick={(event) => followUser(event.target, id)} />}
+          : <Button className={style.followBtn} text="Follow" disabled={isAuthorized ? false : true} onClick={(event) => followUser(event.target, id)} />}
       </div>
       <div className={style.userRight}>
         <div>

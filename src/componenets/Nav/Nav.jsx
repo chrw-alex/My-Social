@@ -10,7 +10,7 @@ const Nav = ({ authorizedUser, isAuthorized }) => {
           <NavLink to={isAuthorized ? `/profile/${authorizedUser.id}` : '/login'} className={style.link}>Profile</NavLink>
         </div>
         <div>
-          <NavLink to='/messages' className={style.link}>Messages</NavLink>
+          <NavLink to={isAuthorized ? '/messages' : '/login'} className={style.link}>Messages</NavLink>
         </div>
         <div>
           <NavLink to='/news' className={style.link}>News</NavLink>

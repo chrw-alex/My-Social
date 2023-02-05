@@ -31,7 +31,7 @@ function App() {
         }
       })
       .catch((error) => setError(error.message))
-  }, [])
+  }, [isAuthorized])
 
   if (error) {
     return (
@@ -42,16 +42,16 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header authorizedUser={authorizedUser} isAuthorized={isAuthorized} />
+        <Header authorizedUser={authorizedUser} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />
         <div className='main'>
           <Nav authorizedUser={authorizedUser} isAuthorized={isAuthorized} />
           <Routes>
-            <Route path={'/profile/:id'} element={<Profile isAuthorized={isAuthorized} />} />
-            <Route path='/login' element={<LoginPage />} />
+            <Route path={'/profile/:id'} element={<Profile isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />} />
+            <Route path='/login' element={<LoginPage setIsAuthorized={setIsAuthorized} setAuthorizedUser={setAuthorizedUser} />} />
             <Route path='/messages/*' element={<Messages isAuthorized={isAuthorized} />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
-            <Route path='/users' element={<Users />} />
+            <Route path='/users' element={<Users isAuthorized={isAuthorized} />} />
             <Route path='/settings' element={<Settings />} />
           </Routes>
         </div>

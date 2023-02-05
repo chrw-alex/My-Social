@@ -9,7 +9,7 @@ import Error from '../Error/Error';
 
 import style from './Users.module.css';
 
-const Users = () => {
+const Users = ({ isAuthorized }) => {
 
   const [users, setUsers] = useState([]);
   // const [following, setFollowing] = useState([]);
@@ -107,7 +107,7 @@ const Users = () => {
           ? <Preloader />
           : (users.map(({ id, name, status, followed, photos }) => {
             return (
-              <SingleUser id={id} key={id} name={name} photos={photos} status={status} followed={followed} followUser={followUser} unfollowUser={unfollowUser} />
+              <SingleUser id={id} key={id} name={name} photos={photos} status={status} followed={followed} followUser={followUser} unfollowUser={unfollowUser} isAuthorized={isAuthorized} />
             )
           }))}
         <div className={style.showMore}>

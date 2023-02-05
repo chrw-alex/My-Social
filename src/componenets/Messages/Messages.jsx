@@ -1,17 +1,9 @@
 import Dialogs from './Dialogs/Dialogs';
 import SingleDialog from './SingleDialog/SingleDialog';
-import LoginPage from '../LoginPage/LoginPage';
 
 import style from './Messages.module.css';
 
-const Messages = ({ isAuthorized }) => {
-
-  if (!isAuthorized) {
-    return (
-      <LoginPage />
-    )
-  }
-
+const Messages = () => {
   return (
     <div className={style.messages}>
       <Dialogs />

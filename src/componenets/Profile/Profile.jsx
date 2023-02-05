@@ -6,11 +6,10 @@ import Posts from './Posts/Posts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
-import LoginPage from '../LoginPage/LoginPage';
 
 import style from './Profile.module.css';
 
-const Profile = ({ isAuthorized }) => {
+const Profile = ({ setIsAuthorized }) => {
 
   const [profile, setProfile] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +17,6 @@ const Profile = ({ isAuthorized }) => {
   const [authorizedUser, setAuthorizedUser] = useState({})
   const [authorisedUserProfile, setAuthorizedUserProfile] = useState({})
   const params = useParams();
-
 
   useEffect(() => {
     getProfile(params.id)
@@ -35,11 +33,12 @@ const Profile = ({ isAuthorized }) => {
     getMe()
       .then(response => {
         if (response.data.resultCode === 0) {
+          setIsAuthorized(true)
           setAuthorizedUser(response.data.data)
         }
       })
       .catch((error) => setError(error.message))
-  }, [])
+  }, [setIsAuthorized])
 
   useEffect(() => {
     if (authorizedUser.id) {
@@ -51,15 +50,10 @@ const Profile = ({ isAuthorized }) => {
     }
   }, [authorizedUser])
 
+
   if (error) {
     return (
       <Error />
-    )
-  }
-
-  if (!isAuthorized) {
-    return (
-      <LoginPage />
     )
   }
 

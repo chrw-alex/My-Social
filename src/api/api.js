@@ -48,3 +48,11 @@ export const getStatus = (id) => {
 export const changeStatus = (statusText) => {
   return instanse.put(`profile/status`, { status: statusText })
 }
+
+export const loginUser = (email, password, rememberMe) => {
+  return instanse.post(`auth/login`, { email, password, rememberMe })
+}
+
+export const logoutUser = () => {
+  return instanse.delete(`auth/login`)
+}

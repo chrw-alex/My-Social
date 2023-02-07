@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getUsers, postFollow, deleteFollow, showMore } from '../../api/api';
 
 import Button from '../Button/Button';
+import UsersSearch from './UsersSearch/UsersSearch';
 import SingleUser from './SingleUser/SingleUser';
 // import FollowingGroup from './FollowingGroup/FollowingGroup';
 import Preloader from '../Preloader/Preloader';
@@ -13,6 +14,7 @@ const Users = ({ isAuthorized }) => {
 
   const [users, setUsers] = useState([]);
   // const [following, setFollowing] = useState([]);
+  const [text, setText] = useState('')
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -84,7 +86,7 @@ const Users = ({ isAuthorized }) => {
   const showMoreHandler = () => {
     setIsShowMoreLoading(true)
     setPageCount(pageCount + 1)
-    showMore(pageCount + 1, 10)
+    showMore(pageCount + 1, 10, text)
       .then((data) => {
         setUsers([...users, ...data.items])
       })
@@ -102,6 +104,7 @@ const Users = ({ isAuthorized }) => {
     <div className={style.users}>
       {/* <FollowingGroup following={following} /> */}
       <div className={style.usersInner}>
+        <UsersSearch setUsers={setUsers} text={text} setText={setText} />
         <h4 className={style.usersTitle}>Users</h4>
         {isLoading
           ? <Preloader />

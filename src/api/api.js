@@ -15,6 +15,13 @@ export const getUsers = (page = 1, count = 10) => {
     })
 }
 
+export const searchUsersbyName = (page = 1, count = 10, term) => {
+  return instanse.get(`users?page=${page}&count=${count}&term=${term}`)
+    .then(response => {
+      return response.data
+    })
+}
+
 export const postFollow = (id) => {
   return instanse.post(`follow/${id}`)
 }
@@ -23,8 +30,8 @@ export const deleteFollow = (id) => {
   return instanse.delete(`follow/${id}`)
 }
 
-export const showMore = (page, count = 10) => {
-  return instanse.get(`users?page=${page}&count=${count}`)
+export const showMore = (page, count = 10, term = '') => {
+  return instanse.get(`users?page=${page}&count=${count}&term=${term}`)
     .then(response => {
       return response.data
     })

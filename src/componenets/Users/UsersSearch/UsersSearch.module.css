@@ -1,0 +1,37 @@
+.search {
+  margin-bottom: 20px;
+}
+
+.form {
+  width: fit-content;
+  margin-left: auto;
+  display: flex;
+  text-align: center;
+}
+
+.input {
+  height: 24px;
+  margin-right: 2px;
+  border: none;
+  border-bottom: 1px solid rgba(128, 126, 126, .7);
+  border-radius: 2px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+}
+
+
+.searchIcon {
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+.searchIcon:hover {
+  transform: scale(1.2);
+}

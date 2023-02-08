@@ -12,12 +12,13 @@ const SingleMessage = ({ text, id, date, deleteMessageHandler }) => {
         <div className={style.messageInfo}>
           <p className={style.messageUserName}>Alexandra</p>
           <p className={style.messageDate}>{formatDate(date)}</p>
+          <RiDeleteBinLine className={style.messageDeleteIcon} onClick={() => deleteMessageHandler(id)} />
         </div>
         <div className={style.messageTextAndDelete}>
           <div>
             <p className={style.messageText}>{text}</p>
           </div>
-          <RiDeleteBinLine className={style.messageDeleteIcon} onClick={() => deleteMessageHandler(id)} />
+
         </div>
       </div>
     </div>

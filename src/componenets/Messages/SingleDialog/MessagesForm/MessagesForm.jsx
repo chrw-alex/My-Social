@@ -1,34 +1,39 @@
-import { useState } from "react";
-
-import Textarea from './../../../Textarea/Textarea';
+import { Form, Field } from 'react-final-form';
+import { composeValidators, maxLengthCreator, minLength1 } from '../../../../additional/validators';
 import Button from './../../../Button/Button';
 
 import style from './MessagesForm.module.css';
 
+const maxLength1000 = maxLengthCreator(1000)
+
 const MessagesForm = ({ addMessage }) => {
 
-  const [text, setText] = useState('');
-
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    addMessage(text);
-    setText('');
+  const onSubmit = ({ messageText }) => {
+    addMessage(messageText);
   }
 
   return (
-    <form className={style.form} onSubmit={onSubmitHandler}>
-      <Textarea
-        className={style.textarea}
-        placeholder="enter message's text..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <Button
-        type='submit'
-        className={style.button}
-        text='Send message'
-      />
-    </form>
+    <Form
+      onSubmit={onSubmit}
+      render={({ handleSubmit, form, invalid }) => (
+        <form className={style.form} onSubmit={handleSubmit}>
+          <Field name='messageText' validate={composeValidators(maxLength1000, minLength1)}>
+            {({ input, meta }) => (
+              <div className={style.formInner}>
+                <textarea {...input} className={style.textarea} placeholder="enter message's text" />
+                {meta.error && meta.active && <span className={style.error}>{meta.error}</span>}
+              </div>
+            )}
+          </Field>
+          <Button
+            className={style.button}
+            text='Send message'
+            disabled={invalid}
+            onClick={() => setTimeout(form.restart, 500)}
+          />
+        </form>
+      )}
+    />
   )
 }
 

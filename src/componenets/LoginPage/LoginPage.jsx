@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
 import { loginUser, getMe } from '../../api/api';
-import { ReactComponent as RequiredSvg } from './../../assets/img/required.svg'
+import { required } from '../../additional/validators';
 
 import Button from '../Button/Button';
 import PreloaderSmall from '../PreloaderSmall/PreloaderSmall';
@@ -19,8 +19,6 @@ const LoginPage = ({ setIsAuthorized, setAuthorizedUser }) => {
   const [error, setError] = useState('');
   const [isDataCorrect, setIsDataCorrect] = useState(true);
   const navigate = useNavigate();
-
-  const required = value => (value ? undefined : <RequiredSvg className={style.requiredIcon} />)
 
   const onSubmit = ({ email, password, rememberMe }) => {
     setIsLoading(true)

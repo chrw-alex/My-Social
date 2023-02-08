@@ -4,7 +4,7 @@
 
 .commentsVisible {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding-left: 70px;
 }
 
@@ -20,11 +20,15 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.commentsForm div {
+  width: 100%;
 }
 
 .commentsTextarea {
-  width: 90%;
+  width: 95%;
   padding-top: 6px;
   padding-left: 10px;
   background-color: rgb(245, 245, 245);
@@ -38,11 +42,24 @@
   outline: 1px solid rgb(223, 221, 221);
 }
 
+.error {
+  color: red;
+  padding-left: 10px;
+}
+
 .sendCommentButton {
+  width: 5%;
   margin: 0;
   padding: 0;
+  padding-top: 6px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.sendCommentButton:disabled .sendIcon {
+  opacity: .2;
+  cursor: default;
 }
 
 .sendIcon {
@@ -51,7 +68,6 @@
   margin-left: auto;
   color: rgb(0, 0, 0);
   opacity: .4;
-  cursor: pointer;
   transition: opacity .2s ease;
 }
 

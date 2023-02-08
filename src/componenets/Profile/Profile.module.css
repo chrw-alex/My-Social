@@ -1,6 +1,7 @@
 .profile {
   width: 85%;
-  height: 100%;
+  height: fit-content;
+  padding-bottom: 40px;
 }
 
 .profileInner {

@@ -28,6 +28,10 @@
   font-weight: 600;
 }
 
+.postText {
+  width: 90%;
+}
+
 .postDate {
   font-size: 14px;
   opacity: .6;

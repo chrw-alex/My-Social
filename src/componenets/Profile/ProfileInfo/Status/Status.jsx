@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { getStatus, changeStatus } from '../../../../api/api';
+import { composeValidators, maxLengthCreator, minLength1 } from '../../../../additional/validators';
+import { Form, Field } from 'react-final-form';
 
 import Button from '../../../Button/Button';
 import PreloaderSmall from '../../../PreloaderSmall/PreloaderSmall';
 import style from './Status.module.css';
 
+const maxLength300 = maxLengthCreator(300)
+
 const Status = ({ profile, authorisedUserProfile }) => {
 
   const [editMode, setEditMode] = useState(false);
-  const [text, setText] = useState('');
   const [status, setStatus] = useState('');
   const [isStatusLoading, setIsStatusLoading] = useState(true);
 
@@ -32,16 +35,14 @@ const Status = ({ profile, authorisedUserProfile }) => {
 
   const turnOffEditMode = () => {
     setEditMode(false)
-    setText('')
   }
 
-  const onStatusSubmitHandler = (e) => {
-    e.preventDefault()
+  const onSubmit = ({ statusText }) => {
     setIsStatusLoading(true)
-    changeStatus(text)
+    changeStatus(statusText)
       .then((response) => {
         if (response.data.resultCode === 0) {
-          setStatus(text)
+          setStatus(statusText)
         }
       })
       .finally(() => setIsStatusLoading(false))
@@ -52,10 +53,25 @@ const Status = ({ profile, authorisedUserProfile }) => {
       {isStatusLoading
         ? <PreloaderSmall />
         : editMode
-          ? (<form onBlur={() => setTimeout(turnOffEditMode, 200)} className={style.form} onSubmit={(e) => onStatusSubmitHandler(e)}>
-            <input className={style.input} autoFocus={true} type="text" value={text} onChange={(e) => setText(e.target.value)} />
-            <Button type='submit' className={style.button} text='Send' />
-          </form>)
+          ? (<Form
+            onSubmit={onSubmit}
+            render={({ handleSubmit, form, invalid }) => (
+              <form className={style.form} onSubmit={handleSubmit} onBlur={() => {
+                setTimeout(turnOffEditMode, 200)
+                setTimeout(form.restart, 200)
+              }} >
+                <Field name='statusText' validate={composeValidators(maxLength300, minLength1)}>
+                  {({ input, meta }) => (
+                    <div className={style.formInner}>
+                      <input {...input} className={style.input} placeholder='your news...' />
+                      {meta.error && meta.active && <span className={style.error}>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+                <Button className={style.button} text='Send' disabled={invalid} onClick={() => setTimeout(form.restart, 500)} />
+              </form>
+            )}
+          />)
           : (<span title={authorisedUserProfile?.userId === profile.userId ? 'Click twice to change status' : ''} className={style.statusText} onDoubleClick={turnOnEditMode} >{status}</span>)}
     </div>
   )

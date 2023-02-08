@@ -36,6 +36,7 @@
 
 .followBtn:disabled {
   background-color: lightgray;
+  cursor: auto;
 }
 
 .userRight {

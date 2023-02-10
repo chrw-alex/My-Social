@@ -3,11 +3,11 @@ import SingleDialog from './SingleDialog/SingleDialog';
 
 import style from './Messages.module.css';
 
-const Messages = () => {
+const Messages = ({ authorisedUserProfile, noUserPhoto }) => {
   return (
     <div className={style.messages}>
       <Dialogs />
-      <SingleDialog />
+      <SingleDialog authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />
     </div>
   )
 }

@@ -11,7 +11,7 @@ import SingleComment from './SingleComment/SingleComment';
 
 import style from './SinglePost.module.css';
 
-const SinglePost = ({ text, date, likesCount, commentsCount, isCommentButtonClicked, id, isLiked, likePostHandler, commentButtonHandler, deletePostHandler, authorisedUserProfile }) => {
+const SinglePost = ({ text, date, likesCount, commentsCount, isCommentButtonClicked, id, isLiked, likePostHandler, commentButtonHandler, deletePostHandler, authorisedUserProfile, noUserPhoto }) => {
 
   const [comments, setComments] = useState([]);
 
@@ -46,7 +46,7 @@ const SinglePost = ({ text, date, likesCount, commentsCount, isCommentButtonClic
   return (
     <div className={style.singlePost}>
       <div className={style.singlePostInner}>
-        <img className={style.singlePostImg} src={authorisedUserProfile?.photos?.large || 'https://avatars.mds.yandex.net/i?id=384a55164f8927b70d0d86e5dd1ec4a6ba880567-6997554-images-thumbs&n=13'} alt="userImg" />
+        <img className={style.singlePostImg} src={authorisedUserProfile?.photos?.large || noUserPhoto} alt="userImg" />
         <div className={style.singlePostInfo}>
           <p className={style.postUserName}>{authorisedUserProfile.fullName}</p>
           <p className={style.postDate}>{formatDate(date)}</p>
@@ -74,10 +74,10 @@ const SinglePost = ({ text, date, likesCount, commentsCount, isCommentButtonClic
       </div>
       {comments.map(({ id, text, date, likesCount, isLiked }) => {
         return (
-          <SingleComment key={id} id={id} text={text} date={date} likesCount={likesCount} isLiked={isLiked} formatDate={formatDate} deleteCommentHandler={deleteCommentHandler} likeCommentHandler={likeCommentHandler} authorisedUserProfile={authorisedUserProfile} />
+          <SingleComment key={id} id={id} text={text} date={date} likesCount={likesCount} isLiked={isLiked} formatDate={formatDate} deleteCommentHandler={deleteCommentHandler} likeCommentHandler={likeCommentHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />
         )
       })}
-      <CommentsForm isCommentButtonClicked={isCommentButtonClicked} addCommentHandler={addCommentHandler} authorisedUserProfile={authorisedUserProfile} />
+      <CommentsForm isCommentButtonClicked={isCommentButtonClicked} addCommentHandler={addCommentHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />
     </div>
 
   )

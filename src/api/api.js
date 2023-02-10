@@ -56,10 +56,14 @@ export const changeStatus = (statusText) => {
   return instanse.put(`profile/status`, { status: statusText })
 }
 
-export const loginUser = (email, password, rememberMe) => {
-  return instanse.post(`auth/login`, { email, password, rememberMe })
+export const loginUser = (email, password, rememberMe, captcha) => {
+  return instanse.post(`auth/login`, { email, password, rememberMe, captcha })
 }
 
 export const logoutUser = () => {
   return instanse.delete(`auth/login`)
+}
+
+export const getCaptcha = () => {
+  return instanse.get('security/get-captcha-url')
 }

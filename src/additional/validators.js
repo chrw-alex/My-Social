@@ -8,11 +8,7 @@ export const maxLengthCreator = (maxLength) => (value) => {
   }
 }
 
-export const minLength1 = (value) => {
-  if (!value) {
-    return `Min length is 1 symbol!`
-  }
-}
+export const minLength1 = value => (value ? undefined : 'Min length is 1 symbol')
 
 export const composeValidators = (...validators) => (value) =>
   validators.reduce((error, validator) => error || validator(value), undefined);

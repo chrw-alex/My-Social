@@ -5,7 +5,7 @@ import SingleMessage from './SingleMessage/SingleMessage';
 import MessagesForm from './MessagesForm/MessagesForm';
 import style from './SingleDialog.module.css';
 
-const SingleDialog = () => {
+const SingleDialog = ({ authorisedUserProfile, noUserPhoto }) => {
 
   const [messages, setMessages] = useState([]);
 
@@ -27,7 +27,7 @@ const SingleDialog = () => {
       <div className={style.singleDialogTop}>
         {messages.map(({ id, text, date }) => {
           return (
-            <SingleMessage text={text} key={id} id={id} date={date} deleteMessageHandler={deleteMessageHandler} />
+            <SingleMessage authorisedUserProfile={authorisedUserProfile} text={text} key={id} id={id} date={date} deleteMessageHandler={deleteMessageHandler} noUserPhoto={noUserPhoto} />
           )
         })}
       </div>

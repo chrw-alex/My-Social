@@ -6,7 +6,7 @@ import style from './CommentsForm.module.css';
 
 const maxLength300 = maxLengthCreator(300)
 
-const CommentsForm = ({ isCommentButtonClicked, addCommentHandler, authorisedUserProfile }) => {
+const CommentsForm = ({ isCommentButtonClicked, addCommentHandler, authorisedUserProfile, noUserPhoto }) => {
 
   const onSubmit = ({ commentText }) => {
     addCommentHandler(commentText);
@@ -14,7 +14,7 @@ const CommentsForm = ({ isCommentButtonClicked, addCommentHandler, authorisedUse
 
   return (
     <div className={isCommentButtonClicked ? style.commentsVisible : style.comments}>
-      <img className={style.commentsFormImg} src={authorisedUserProfile?.photos?.large || 'https://avatars.mds.yandex.net/i?id=384a55164f8927b70d0d86e5dd1ec4a6ba880567-6997554-images-thumbs&n=13'} alt="userImg" />
+      <img className={style.commentsFormImg} src={authorisedUserProfile?.photos?.large || noUserPhoto} alt="userImg" />
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, form, invalid }) => (

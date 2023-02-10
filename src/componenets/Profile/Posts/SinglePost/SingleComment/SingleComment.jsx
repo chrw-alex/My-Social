@@ -3,10 +3,10 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 
 import style from './SingleComment.module.css';
 
-const SingleComment = ({ id, text, date, likesCount, isLiked, formatDate, deleteCommentHandler, likeCommentHandler, authorisedUserProfile }) => {
+const SingleComment = ({ id, text, date, likesCount, isLiked, formatDate, deleteCommentHandler, likeCommentHandler, authorisedUserProfile, noUserPhoto }) => {
   return (
     <div className={style.singleComment}>
-      <img className={style.commentImg} src={authorisedUserProfile?.photos?.large || 'https://avatars.mds.yandex.net/i?id=384a55164f8927b70d0d86e5dd1ec4a6ba880567-6997554-images-thumbs&n=13'} alt="userImg" />
+      <img className={style.commentImg} src={authorisedUserProfile?.photos?.large || noUserPhoto} alt="userImg" />
       <div className={style.commentMain}>
         <div className={style.commentInfo}>
           <p className={style.commentUserName}>{authorisedUserProfile.fullName}</p>

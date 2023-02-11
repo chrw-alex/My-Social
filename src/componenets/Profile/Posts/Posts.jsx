@@ -1,41 +1,69 @@
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useParams } from 'react-router-dom';
+import { addPost, getPosts, deletePost, likePost } from '../../../api/mockapi';
 import PostsForm from './PostsForm/PostsForm';
 import SinglePost from './SinglePost/SinglePost';
-
+import Preloader from '../../Preloader/Preloader';
 
 import style from './Posts.module.css';
 
+const Posts = ({ authorisedUserProfile, noUserPhoto, profile, posts, setPosts, isPostsLoading }) => {
 
-const Posts = ({ authorisedUserProfile, noUserPhoto }) => {
-
-  const [posts, setPosts] = useState([]);
+  const params = useParams();
 
   const addPostHandler = (text) => {
     const newPost = {
-      id: uuidv4(),
-      text: text,
+      profileId: params.id,
+      profileOwner: profile.fullName,
+      userName: authorisedUserProfile.fullName,
+      userPhoto: authorisedUserProfile.photos.large || noUserPhoto,
       date: new Date(),
-      likesCount: 0,
+      postText: text,
       isLiked: false,
-      isCommentButtonClicked: false,
+      likesCount: 0,
+      whoLiked: [],
       commentsCount: 0,
-      isCommented: false
+      comments: [],
     }
 
-    setPosts([newPost, ...posts]);
+    addPost(newPost)
+      .then(() => {
+        getPosts(profile.fullName)
+          .then((data) => setPosts(data))
+      })
   }
 
-  const likePostHandler = (id, likesCount, isLiked) => {
-    setPosts(posts.map((post) => {
-      if (post.id === id && isLiked) {
-        return ({ ...post, isLiked: !post.isLiked, likesCount: likesCount - 1 })
-      } else if (post.id === id && !isLiked) {
-        return ({ ...post, isLiked: !post.isLiked, likesCount: likesCount + 1 })
-      } else {
-        return ({ ...post })
+  const likePostHandler = (like, id) => {
+    like.disabled = true
+    let currentPost = posts.find(post => post.id === id)
+    let isLiked = currentPost.isLiked
+    let likesCount = currentPost.likesCount
+    let whoLiked = currentPost.whoLiked
+
+    if (whoLiked.includes(authorisedUserProfile.userId)) {
+      whoLiked = whoLiked.filter((el) => el !== authorisedUserProfile.userId)
+      likesCount = likesCount - 1
+      if (likesCount === 0) {
+        isLiked = false
       }
-    }))
+      likePost(id, isLiked, likesCount, whoLiked)
+        .then(() => {
+          getPosts(profile.fullName)
+            .then(data => setPosts(data))
+        })
+      return;
+    }
+    if (!whoLiked.includes(authorisedUserProfile.userId)) {
+      whoLiked.unshift(authorisedUserProfile.userId)
+      likesCount = likesCount + 1
+      isLiked = true
+      likePost(id, isLiked, likesCount, whoLiked)
+        .then(() => {
+          getPosts(profile.fullName)
+            .then(data => setPosts(data))
+        })
+        .finally(() => like.disabled = false)
+      return;
+    }
   }
 
   const commentButtonHandler = (id) => {
@@ -48,16 +76,22 @@ const Posts = ({ authorisedUserProfile, noUserPhoto }) => {
   }
 
   const deletePostHandler = (id) => {
-    setPosts(posts.filter((post) => post.id !== id))
+    deletePost(id)
+      .then(() => {
+        getPosts(profile.fullName)
+          .then((data) => {
+            setPosts(data)
+          })
+      })
   }
 
   return (
     <div className={style.posts}>
       <h3 className={style.myPostsTitle}>Posts</h3>
       <PostsForm addPost={addPostHandler} />
-      {posts.map(({ id, text, likesCount, commentsCount, isLiked, date, isCommentButtonClicked, isCommented }) => {
+      {isPostsLoading ? <Preloader /> : posts.map(({ id, postText, userName, userPhoto, date, isLiked, likesCount, commentsCount }) => {
         return (
-          <SinglePost text={text} date={date} likesCount={likesCount} isCommentButtonClicked={isCommentButtonClicked} commentsCount={commentsCount} isCommented={isCommented} key={id} id={id} isLiked={isLiked} likePostHandler={likePostHandler} commentButtonHandler={commentButtonHandler} deletePostHandler={deletePostHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />
+          <SinglePost postText={postText} userName={userName} userPhoto={userPhoto} date={date} likesCount={likesCount} key={id} id={id} isLiked={isLiked} commentsCount={commentsCount} likePostHandler={likePostHandler} commentButtonHandler={commentButtonHandler} deletePostHandler={deletePostHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />
         )
       })}
     </div>

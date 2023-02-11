@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { CgHeart } from 'react-icons/cg';
 import { RiDeleteBinLine, RiChat3Line } from 'react-icons/ri';
@@ -11,9 +12,12 @@ import SingleComment from './SingleComment/SingleComment';
 
 import style from './SinglePost.module.css';
 
-const SinglePost = ({ text, date, likesCount, commentsCount, isCommentButtonClicked, id, isLiked, likePostHandler, commentButtonHandler, deletePostHandler, authorisedUserProfile, noUserPhoto }) => {
+const SinglePost = ({ postText, date, userName, userPhoto, likesCount, id, isLiked, likePostHandler, commentButtonHandler, deletePostHandler, authorisedUserProfile, noUserPhoto, isCommentButtonClicked, commentsCount }) => {
 
   const [comments, setComments] = useState([]);
+  const params = useParams();
+
+  const showDeleteButton = (authorisedUserProfile.userId === +params.id || authorisedUserProfile.fullName === userName) ? true : false
 
   const addCommentHandler = (text) => {
     const newComment = {
@@ -46,21 +50,21 @@ const SinglePost = ({ text, date, likesCount, commentsCount, isCommentButtonClic
   return (
     <div className={style.singlePost}>
       <div className={style.singlePostInner}>
-        <img className={style.singlePostImg} src={authorisedUserProfile?.photos?.large || noUserPhoto} alt="userImg" />
+        <img className={style.singlePostImg} src={userPhoto} alt="userImg" />
         <div className={style.singlePostInfo}>
-          <p className={style.postUserName}>{authorisedUserProfile.fullName}</p>
+          <p className={style.postUserName}>{userName}</p>
           <p className={style.postDate}>{formatDate(date)}</p>
         </div>
-        <RiDeleteBinLine className={style.deleteIcon} onClick={() => deletePostHandler(id)} />
+        {showDeleteButton ? <RiDeleteBinLine className={style.deleteIcon} onClick={() => deletePostHandler(id)} /> : null}
       </div>
       <div className={style.post}>
         <div className={style.postText}>
-          <p>{text}</p>
+          <p>{postText}</p>
         </div>
       </div>
       <div className={style.actions}>
         <div className={style.likeAction}>
-          <CgHeart className={`${style.heartIcon} ${isLiked ? style.heartIconActive : ''}`} onClick={() => likePostHandler(id, likesCount, isLiked)} />
+          <CgHeart className={`${style.heartIcon} ${isLiked ? style.heartIconActive : ''}`} onClick={(event) => likePostHandler(event.target, id)} />
           <div>
             <p className={style.likesCount}>{likesCount}</p>
           </div>

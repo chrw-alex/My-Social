@@ -8,6 +8,14 @@ const instanse = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/'
 });
 
+export const getFollowed = () => {
+  return instanse.get(`users?followed=true`)
+    .then(response => {
+      return response.data
+    })
+}
+
+
 export const getUsers = (page = 1, count = 10) => {
   return instanse.get(`users?page=${page}&count=${count}`)
     .then(response => {

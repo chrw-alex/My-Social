@@ -1,4 +1,5 @@
-const formatDate = (date) => {
+const formatDate = (postDate) => {
+  let date = Date.parse(postDate)
   let diff = new Date() - date;
   if (diff < 1000) {
     return 'прямо сейчас';
@@ -12,7 +13,7 @@ const formatDate = (date) => {
     return min + ' мин. назад';
   }
 
-  let d = date;
+  let d = new Date(date);
   d = [
     '0' + d.getDate(),
     '0' + (d.getMonth() + 1),

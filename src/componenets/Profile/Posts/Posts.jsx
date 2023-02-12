@@ -11,14 +11,13 @@ const Posts = ({ authorisedUserProfile, noUserPhoto, profile, posts, setPosts, i
   const params = useParams();
 
   const addPostHandler = (text) => {
+
     const newPost = {
       profileId: params.id,
       profileOwner: profile.fullName,
       userName: authorisedUserProfile.fullName,
-      userPhoto: authorisedUserProfile.photos.large || noUserPhoto,
       date: new Date(),
       postText: text,
-      isLiked: false,
       likesCount: 0,
       whoLiked: [],
       commentsCount: 0,
@@ -32,20 +31,15 @@ const Posts = ({ authorisedUserProfile, noUserPhoto, profile, posts, setPosts, i
       })
   }
 
-  const likePostHandler = (like, id) => {
-    like.disabled = true
+  const likePostHandler = (id) => {
     let currentPost = posts.find(post => post.id === id)
-    let isLiked = currentPost.isLiked
     let likesCount = currentPost.likesCount
     let whoLiked = currentPost.whoLiked
 
     if (whoLiked.includes(authorisedUserProfile.userId)) {
       whoLiked = whoLiked.filter((el) => el !== authorisedUserProfile.userId)
       likesCount = likesCount - 1
-      if (likesCount === 0) {
-        isLiked = false
-      }
-      likePost(id, isLiked, likesCount, whoLiked)
+      likePost(id, likesCount, whoLiked)
         .then(() => {
           getPosts(profile.fullName)
             .then(data => setPosts(data))
@@ -53,26 +47,21 @@ const Posts = ({ authorisedUserProfile, noUserPhoto, profile, posts, setPosts, i
       return;
     }
     if (!whoLiked.includes(authorisedUserProfile.userId)) {
-      whoLiked.unshift(authorisedUserProfile.userId)
+      whoLiked.push(authorisedUserProfile.userId)
       likesCount = likesCount + 1
-      isLiked = true
-      likePost(id, isLiked, likesCount, whoLiked)
+      likePost(id, likesCount, whoLiked)
         .then(() => {
           getPosts(profile.fullName)
             .then(data => setPosts(data))
         })
-        .finally(() => like.disabled = false)
       return;
     }
   }
 
-  const commentButtonHandler = (id) => {
-    setPosts(posts.map((post) => {
-      return (post.id === id
-        ? ({ ...post, isCommentButtonClicked: true })
-        : ({ ...post })
-      )
-    }))
+  const commentButtonHandler = (element) => {
+    let currentPost = element.parentNode.parentNode.parentNode
+    let commentForm = currentPost.lastElementChild
+    commentForm.style.cssText = `height: auto; visibility: visible;`
   }
 
   const deletePostHandler = (id) => {
@@ -88,12 +77,17 @@ const Posts = ({ authorisedUserProfile, noUserPhoto, profile, posts, setPosts, i
   return (
     <div className={style.posts}>
       <h3 className={style.myPostsTitle}>Posts</h3>
-      <PostsForm addPost={addPostHandler} />
-      {isPostsLoading ? <Preloader /> : posts.map(({ id, postText, userName, userPhoto, date, isLiked, likesCount, commentsCount }) => {
-        return (
-          <SinglePost postText={postText} userName={userName} userPhoto={userPhoto} date={date} likesCount={likesCount} key={id} id={id} isLiked={isLiked} commentsCount={commentsCount} likePostHandler={likePostHandler} commentButtonHandler={commentButtonHandler} deletePostHandler={deletePostHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />
-        )
-      })}
+      <PostsForm addPostHandler={addPostHandler} />
+      {isPostsLoading ? <Preloader />
+        : posts.map(({ id, postText, userName, date, likesCount, commentsCount, whoLiked, comments }) => {
+          let authorizedUserLikedPost = false
+          if (whoLiked.includes(authorisedUserProfile.userId)) {
+            authorizedUserLikedPost = true
+          }
+          return (
+            <SinglePost profile={profile} posts={posts} postText={postText} userName={userName} date={date} likesCount={likesCount} key={id} id={id} commentsCount={commentsCount} likePostHandler={likePostHandler} commentButtonHandler={commentButtonHandler} deletePostHandler={deletePostHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} authorizedUserLikedPost={authorizedUserLikedPost} setPosts={setPosts} comments={comments} />
+          )
+        })}
     </div>
   )
 }

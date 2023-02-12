@@ -6,10 +6,10 @@ import style from './PostsForm.module.css';
 
 const maxLength500 = maxLengthCreator(500)
 
-const PostsForm = ({ addPost }) => {
+const PostsForm = ({ addPostHandler }) => {
 
   const onSubmit = ({ postText }) => {
-    addPost(postText);
+    addPostHandler(postText);
   }
 
   return (

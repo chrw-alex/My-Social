@@ -6,19 +6,21 @@ import style from './CommentsForm.module.css';
 
 const maxLength300 = maxLengthCreator(300)
 
-const CommentsForm = ({ isCommentButtonClicked, addCommentHandler, authorisedUserProfile, noUserPhoto }) => {
+const CommentsForm = ({ id, addCommentHandler, authorisedUserProfile, noUserPhoto }) => {
+
+  const currentPostId = id
 
   const onSubmit = ({ commentText }) => {
-    addCommentHandler(commentText);
+    addCommentHandler(currentPostId, commentText);
   }
 
   return (
-    <div className={isCommentButtonClicked ? style.commentsVisible : style.comments}>
+    <div className={style.comments} >
       <img className={style.commentsFormImg} src={authorisedUserProfile?.photos?.large || noUserPhoto} alt="userImg" />
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, form, invalid }) => (
-          <form className={style.commentsForm} onSubmit={handleSubmit}>
+          <form className={style.commentsForm} onSubmit={handleSubmit} >
             <Field name='commentText' validate={composeValidators(maxLength300, minLength1)}>
               {({ input, meta }) => (
                 <div>

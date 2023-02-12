@@ -1,6 +1,7 @@
 .users {
   width: 85%;
-  height: 100%;
+  min-height: 100vh;
+  max-height: fit-content;
 }
 
 .usersInner {

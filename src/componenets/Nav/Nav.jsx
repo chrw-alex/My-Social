@@ -13,12 +13,6 @@ const Nav = ({ authorizedUser, isAuthorized }) => {
           <NavLink to={isAuthorized ? '/messages' : '/login'} className={style.link}>Messages</NavLink>
         </div>
         <div>
-          <NavLink to='/news' className={style.link}>News</NavLink>
-        </div>
-        <div>
-          <NavLink to='/music' className={style.link}>Music</NavLink>
-        </div>
-        <div>
           <NavLink to='/users' className={style.link}>Users</NavLink>
         </div>
         <div className={style.separatedDiv}>

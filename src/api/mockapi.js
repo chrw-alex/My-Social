@@ -19,6 +19,10 @@ export const deletePost = (id) => {
   return instanse.delete(`posts/${id}`)
 }
 
-export const likePost = (id, isLiked, likesCount, whoLiked) => {
-  return instanse.put(`posts/${id}`, { isLiked, likesCount, whoLiked: [...whoLiked] })
+export const likePost = (id, likesCount, whoLiked) => {
+  return instanse.put(`posts/${id}`, { likesCount, whoLiked: [...whoLiked] })
+}
+
+export const changeComments = (id, commentsCount, comments) => {
+  return instanse.put(`posts/${id}`, { commentsCount, comments: [...comments] })
 }

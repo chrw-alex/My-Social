@@ -16,7 +16,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 6px;
+  padding-bottom: 16px;
   border-bottom: 1px solid lightgray;
 }
 
@@ -27,11 +27,13 @@
 .commentUserName {
   font-size: 16px;
   font-weight: 500;
+  margin-bottom: 2px;
 }
 
 .commentDate {
   margin-bottom: 16px;
   font-size: 14px;
+  letter-spacing: 1px;
   opacity: .6;
 }
 
@@ -44,6 +46,7 @@
 }
 
 .likeActions {
+  margin-top: auto;
   display: flex;
 }
 

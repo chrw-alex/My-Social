@@ -1,8 +1,6 @@
 .comments {
-  display: none;
-}
-
-.commentsVisible {
+  height: 0;
+  visibility: hidden;
   display: flex;
   align-items: flex-start;
   padding-left: 70px;

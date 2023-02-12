@@ -6,8 +6,6 @@ import Messages from './componenets/Messages/Messages';
 import Header from './componenets/Header/Header';
 import Nav from './componenets/Nav/Nav';
 import Profile from './componenets/Profile/Profile';
-import News from './componenets/News/News';
-import Music from './componenets/Music/Music';
 import Users from './componenets/Users/Users';
 import Settings from './componenets/Settings/Settings';
 import LoginPage from './componenets/LoginPage/LoginPage';
@@ -67,8 +65,6 @@ function App() {
             <Route path={'/profile/:id'} element={<Profile isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
             <Route path='/login' element={<LoginPage setIsAuthorized={setIsAuthorized} setAuthorizedUser={setAuthorizedUser} />} />
             <Route path='/messages/*' element={<Messages isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
-            <Route path='/news' element={<News />} />
-            <Route path='/music' element={<Music />} />
             <Route path='/users' element={<Users isAuthorized={isAuthorized} />} />
             <Route path='/settings' element={<Settings />} />
           </Routes>

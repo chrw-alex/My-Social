@@ -16,7 +16,7 @@ const Nav = ({ authorizedUser, isAuthorized }) => {
           <NavLink to='/users' className={style.link}>Users</NavLink>
         </div>
         <div className={style.separatedDiv}>
-          <NavLink to='/settings' className={style.settingsLink}>Settings</NavLink>
+          <NavLink to={isAuthorized ? '/settings' : '/login'} className={style.settingsLink}>Settings</NavLink>
         </div>
       </nav>
     </div>

@@ -1,5 +1,4 @@
 .settings {
   width: 85%;
-  min-height: 100vh;
-  max-height: fit-content;
+  padding-bottom: 160px;
 }

@@ -75,3 +75,18 @@ export const logoutUser = () => {
 export const getCaptcha = () => {
   return instanse.get('security/get-captcha-url')
 }
+
+export const changeProfileInfo = (obj) => {
+  return instanse.put('profile', { ...obj })
+}
+
+export const changeProfileImg = (formData) => {
+  return instanse.put('profile/photo', formData, { headers: { 'content-type': 'multipart/form-data' } })
+}
+
+export const getUserImg = (userName) => {
+  return instanse.get(`users?term=${userName}`)
+    .then(response => {
+      return response.data.items[0].photos.small
+    })
+}

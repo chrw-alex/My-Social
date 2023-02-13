@@ -23,6 +23,10 @@ const ProfileInfo = ({ profile, authorisedUserProfile, noUserPhoto }) => {
               <span className={style.infoTitle}>Details:
               </span>{profile?.lookingForAJobDescription}
             </p>) : null}
+            {profile?.aboutMe ? (<p className={style.infoDetails}>
+              <span className={style.infoTitle}>About Me:
+              </span>{profile?.aboutMe}
+            </p>) : null}
           </div>
         </div>
         <Contacts profile={profile} />

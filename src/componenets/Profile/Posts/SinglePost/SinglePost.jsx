@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { getUserImg } from '../../../../api/api';
 import { changeComments, getPosts } from '../../../../api/mockapi';
 import { v4 as uuidv4 } from 'uuid';
 import { CgHeart } from 'react-icons/cg';
@@ -14,6 +16,13 @@ import style from './SinglePost.module.css';
 const SinglePost = ({ profile, posts, postText, date, userName, likesCount, id, likePostHandler, commentButtonHandler, deletePostHandler, authorisedUserProfile, noUserPhoto, commentsCount, authorizedUserLikedPost, setPosts, comments }) => {
 
   const params = useParams();
+  const [src, setSrc] = useState('')
+
+  useEffect(() => {
+    getUserImg(userName)
+      .then((result) => setSrc(result))
+  }, [userName])
+
   const showDeleteButton = (authorisedUserProfile.userId === +params.id || authorisedUserProfile.fullName === userName) ? true : false
 
   const addCommentHandler = (id, text) => {
@@ -93,7 +102,7 @@ const SinglePost = ({ profile, posts, postText, date, userName, likesCount, id, 
   return (
     <div className={style.singlePost} id={id} comments={comments}>
       <div className={style.singlePostInner}>
-        <img className={style.singlePostImg} src={authorisedUserProfile?.photos?.large || noUserPhoto} alt="userImg" />
+        <img className={style.singlePostImg} src={src || noUserPhoto} alt="userImg" />
         <div className={style.singlePostInfo}>
           <p className={style.postUserName}>{userName}</p>
           <p className={style.postDate}>{formatDate(date)}</p>

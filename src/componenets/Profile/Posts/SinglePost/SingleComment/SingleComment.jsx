@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { getUserImg } from '../../../../../api/api';
 import formatDate from './../../../../../additional/formatDate';
 import { CgHeart } from 'react-icons/cg';
 import { RiDeleteBinLine } from 'react-icons/ri';
@@ -8,11 +10,19 @@ import style from './SingleComment.module.css';
 const SingleComment = ({ id, text, date, likesCount, userName, deleteCommentHandler, likeCommentHandler, authorisedUserProfile, noUserPhoto, authorizedUserLikedComment }) => {
 
   const params = useParams();
+  const [src, setSrc] = useState('')
+
+  useEffect(() => {
+    getUserImg(userName)
+      .then((result) => setSrc(result))
+  }, [userName])
+
+
   const showDeleteButton = (authorisedUserProfile.userId === +params.id || authorisedUserProfile.fullName === userName) ? true : false
 
   return (
     <div className={style.singleComment}>
-      <img className={style.commentImg} src={authorisedUserProfile?.photos?.large || noUserPhoto} alt="userImg" />
+      <img className={style.commentImg} src={src || noUserPhoto} alt="userImg" />
       <div className={style.commentMain}>
         <div className={style.commentInfo}>
           <p className={style.commentUserName}>{userName}</p>

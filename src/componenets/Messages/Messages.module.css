@@ -1,7 +1,5 @@
 .messages {
   width: 85%;
-  min-height: 100vh;
-  max-height: fit-content;
   display: flex;
   justify-content: space-between;
 }

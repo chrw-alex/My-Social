@@ -1,0 +1,50 @@
+.form {
+  padding: 20px;
+  width: 600px;
+  margin: 0 auto;
+  border: 1px solid lightgray;
+  margin-bottom: 40px;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: rgb(128, 126, 126, .7);
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: 1px solid rgba(128, 126, 126, .7);
+}
+
+.btnInner {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 6px 24px;
+  color: #fff;
+  font-size: 18px;
+  background-color: #9ACD32;
+  border: none;
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+
+.button:hover {
+  background-color: #4f6919;
+}
+
+.button:disabled {
+  background-color: lightgray;
+  cursor: default;
+}

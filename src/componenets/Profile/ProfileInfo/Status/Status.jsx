@@ -60,10 +60,10 @@ const Status = ({ profile, authorisedUserProfile }) => {
                 setTimeout(turnOffEditMode, 200)
                 setTimeout(form.restart, 200)
               }} >
-                <Field name='statusText' validate={composeValidators(maxLength300, minLength1)}>
+                <Field name='statusText' validate={composeValidators(maxLength300, minLength1)} initialValue={status} >
                   {({ input, meta }) => (
                     <div className={style.formInner}>
-                      <input {...input} className={style.input} placeholder='your news...' />
+                      <input {...input} autoFocus={true} className={style.input} placeholder='your news...' />
                       {meta.error && meta.active && <span className={style.error}>{meta.error}</span>}
                     </div>
                   )}

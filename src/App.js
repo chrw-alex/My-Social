@@ -65,7 +65,7 @@ function App() {
             <Route path={'/profile/:id'} element={<Profile isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
             <Route path='/login' element={<LoginPage setIsAuthorized={setIsAuthorized} setAuthorizedUser={setAuthorizedUser} />} />
             <Route path='/messages/*' element={<Messages isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
-            <Route path='/users' element={<Users isAuthorized={isAuthorized} />} />
+            <Route path='/users' element={<Users />} />
             <Route path='/settings' element={<Settings authorisedUserProfile={authorisedUserProfile} />} />
           </Routes>
         </div>

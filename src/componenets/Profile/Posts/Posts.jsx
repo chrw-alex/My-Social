@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { addPost, getPosts, deletePost, likePost } from '../../../api/mockapi';
 import PostsForm from './PostsForm/PostsForm';
 import SinglePost from './SinglePost/SinglePost';
@@ -8,13 +7,12 @@ import style from './Posts.module.css';
 
 const Posts = ({ authorisedUserProfile, noUserPhoto, profile, posts, setPosts, isPostsLoading }) => {
 
-  const params = useParams();
-
   const addPostHandler = (text) => {
 
     const newPost = {
-      profileId: params.id,
-      profileOwner: profile.fullName,
+      authorId: authorisedUserProfile.userId,
+      profileOwnerName: profile.fullName,
+      profileOwnerId: profile.userId,
       userName: authorisedUserProfile.fullName,
       date: new Date(),
       postText: text,
@@ -79,13 +77,13 @@ const Posts = ({ authorisedUserProfile, noUserPhoto, profile, posts, setPosts, i
       <h3 className={style.myPostsTitle}>Posts</h3>
       <PostsForm addPostHandler={addPostHandler} />
       {isPostsLoading ? <Preloader />
-        : posts.map(({ id, postText, userName, date, likesCount, commentsCount, whoLiked, comments }) => {
+        : posts.map(({ id, authorId, postText, userName, date, likesCount, commentsCount, whoLiked, comments }) => {
           let authorizedUserLikedPost = false
           if (whoLiked.includes(authorisedUserProfile.userId)) {
             authorizedUserLikedPost = true
           }
           return (
-            <SinglePost profile={profile} posts={posts} postText={postText} userName={userName} date={date} likesCount={likesCount} key={id} id={id} commentsCount={commentsCount} likePostHandler={likePostHandler} commentButtonHandler={commentButtonHandler} deletePostHandler={deletePostHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} authorizedUserLikedPost={authorizedUserLikedPost} setPosts={setPosts} comments={comments} />
+            <SinglePost profile={profile} posts={posts} authorId={authorId} postText={postText} userName={userName} date={date} likesCount={likesCount} key={id} id={id} commentsCount={commentsCount} likePostHandler={likePostHandler} commentButtonHandler={commentButtonHandler} deletePostHandler={deletePostHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} authorizedUserLikedPost={authorizedUserLikedPost} setPosts={setPosts} comments={comments} />
           )
         })}
     </div>

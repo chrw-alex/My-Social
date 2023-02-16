@@ -8,13 +8,6 @@ const instanse = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/'
 });
 
-export const getFollowed = () => {
-  return instanse.get(`users?followed=true`)
-    .then(response => {
-      return response.data
-    })
-}
-
 
 export const getUsers = (page = 1, count = 10) => {
   return instanse.get(`users?page=${page}&count=${count}`)
@@ -64,6 +57,10 @@ export const changeStatus = (statusText) => {
   return instanse.put(`profile/status`, { status: statusText })
 }
 
+export const getFollowed = (id) => {
+  return instanse.get(`follow/${id}`)
+}
+
 export const loginUser = (email, password, rememberMe, captcha) => {
   return instanse.post(`auth/login`, { email, password, rememberMe, captcha })
 }
@@ -84,9 +81,9 @@ export const changeProfileImg = (formData) => {
   return instanse.put('profile/photo', formData, { headers: { 'content-type': 'multipart/form-data' } })
 }
 
-export const getUserImg = (userName) => {
-  return instanse.get(`users?term=${userName}`)
+export const getUserImg = (id) => {
+  return instanse.get(`profile/${id}`)
     .then(response => {
-      return response.data.items[0].photos.small
+      return response.data.photos.small
     })
 }

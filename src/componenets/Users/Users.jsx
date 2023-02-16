@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
-import { getUsers, postFollow, deleteFollow, showMore } from '../../api/api';
+import { getUsers, showMore } from '../../api/api';
 
 import Button from '../Button/Button';
 import UsersSearch from './UsersSearch/UsersSearch';
 import SingleUser from './SingleUser/SingleUser';
-// import FollowingGroup from './FollowingGroup/FollowingGroup';
 import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
 
 import style from './Users.module.css';
 
-const Users = ({ isAuthorized }) => {
+const Users = () => {
 
   const [users, setUsers] = useState([]);
-  // const [following, setFollowing] = useState([]);
   const [text, setText] = useState('')
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,56 +30,6 @@ const Users = ({ isAuthorized }) => {
         setIsDisabled(false)
       })
   }, [])
-
-  const followUser = (button, id) => {
-    button.disabled = true
-    postFollow(id)
-      .then(response => {
-        if (response.data.resultCode === 0) {
-          setUsers(users.map((user) => {
-            return user.id === id
-              ? { ...user, followed: !user.followed }
-              : { ...user }
-          }))
-        }
-      })
-      .catch((error) => setError(error.message))
-      .finally(() => button.disabled = false)
-  }
-
-  const unfollowUser = (button, id) => {
-    button.disabled = true
-    deleteFollow(id)
-      .then(response => {
-        if (response.data.resultCode === 0) {
-          setUsers(users.map((user) => {
-            return user.id === id
-              ? { ...user, followed: !user.followed }
-              : { ...user }
-          }))
-        }
-      })
-      .catch((error) => setError(error.message))
-      .finally(() => button.disabled = false)
-  }
-
-  // const toggleFollowButton = (id, photos, name, followed) => {
-  //   let newFollowing = {
-  //     id: id,
-  //     photos: photos,
-  //     name: name,
-  //   }
-
-  //   followed
-  //     ? setFollowing(following.filter((singleFollowing) => singleFollowing.id !== id))
-  //     : setFollowing([newFollowing, ...following])
-
-  //   setUsers(users.map((user) => {
-  //     return user.id === id
-  //       ? { ...user, followed: !user.followed }
-  //       : { ...user }
-  //   }))
-  // }
 
   const showMoreHandler = () => {
     setIsShowMoreLoading(true)
@@ -102,15 +50,14 @@ const Users = ({ isAuthorized }) => {
 
   return (
     <div className={style.users}>
-      {/* <FollowingGroup following={following} /> */}
       <div className={style.usersInner}>
-        <UsersSearch setUsers={setUsers} text={text} setText={setText} />
+        <UsersSearch users={users} setUsers={setUsers} text={text} setText={setText} />
         <h4 className={style.usersTitle}>Users</h4>
         {isLoading
           ? <Preloader />
-          : (users.map(({ id, name, status, followed, photos }) => {
+          : (users.map(({ id, name, status, photos }) => {
             return (
-              <SingleUser id={id} key={id} name={name} photos={photos} status={status} followed={followed} followUser={followUser} unfollowUser={unfollowUser} isAuthorized={isAuthorized} />
+              <SingleUser id={id} key={id} name={name} photos={photos} status={status} />
             )
           }))}
         <div className={style.showMore}>
@@ -118,7 +65,8 @@ const Users = ({ isAuthorized }) => {
             ? <Preloader />
             : (isDisabled
               ? null
-              : <Button className={style.showMoreButton} text='Show more' onClick={showMoreHandler} />)}
+              : <Button className={style.showMoreButton} text='Show more' onClick={showMoreHandler} />
+            )}
         </div>
       </div>
     </div>

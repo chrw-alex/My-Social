@@ -1,14 +1,29 @@
-import Status from './Status/Status';
-import Contacts from './Contacts/Contacts';
-import { ReactComponent as YesSvg } from '../../../assets/img/yes.svg';
+import Status from './Status/Status'
+import Contacts from './Contacts/Contacts'
+import { ReactComponent as YesSvg } from '../../../assets/img/yes.svg'
 import { ReactComponent as NoSvg } from '../../../assets/img/no.svg'
+import Button from '../../Button/Button'
 
 import style from './ProfileInfo.module.css';
 
-const ProfileInfo = ({ profile, authorisedUserProfile, noUserPhoto }) => {
+const ProfileInfo = ({ isAuthorized, profile, authorisedUserProfile, noUserPhoto, followUser, unfollowUser, followed }) => {
+
+  const buttonVisible = authorisedUserProfile.userId !== profile.userId
+
   return (
     <div className={style.profileInfo}>
-      <img className={style.profileAvatar} src={profile?.photos?.large || noUserPhoto} alt="profile" />
+      <div className={style.profileInfoLeft}>
+        <img className={style.profileAvatar} src={profile?.photos?.large || noUserPhoto} alt="profile" />
+        {buttonVisible ?
+          (<>
+            {followed
+              ? <Button className={style.followBtn} text="Unfollow" onClick={(event) => unfollowUser(event.target, profile.userId)} />
+              : <Button className={style.followBtn} text="Follow" disabled={isAuthorized ? false : true} onClick={(event) => followUser(event.target, profile.userId, profile.fullName)} />}
+            <Button className={style.followBtn} text="Message" disabled={isAuthorized ? false : true} />
+          </>)
+          : null
+        }
+      </div>
       <div className={style.profileMainInfo}>
         <div className={style.userInfo}>
           <h3 className={style.userName}>{profile?.fullName}</h3>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { getUserImg } from '../../../../../api/api';
 import formatDate from './../../../../../additional/formatDate';
 import { CgHeart } from 'react-icons/cg';
@@ -7,25 +7,29 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 
 import style from './SingleComment.module.css';
 
-const SingleComment = ({ id, text, date, likesCount, userName, deleteCommentHandler, likeCommentHandler, authorisedUserProfile, noUserPhoto, authorizedUserLikedComment }) => {
+const SingleComment = ({ id, authorId, text, date, likesCount, userName, deleteCommentHandler, likeCommentHandler, authorisedUserProfile, noUserPhoto, authorizedUserLikedComment }) => {
 
   const params = useParams();
   const [src, setSrc] = useState('')
 
   useEffect(() => {
-    getUserImg(userName)
+    getUserImg(authorId)
       .then((result) => setSrc(result))
-  }, [userName])
+  }, [authorId])
 
 
   const showDeleteButton = (authorisedUserProfile.userId === +params.id || authorisedUserProfile.fullName === userName) ? true : false
 
   return (
     <div className={style.singleComment}>
-      <img className={style.commentImg} src={src || noUserPhoto} alt="userImg" />
+      <NavLink className={style.link} to={`/profile/${authorId}`}>
+        <img className={style.commentImg} src={src || noUserPhoto} alt="userImg" />
+      </NavLink>
       <div className={style.commentMain}>
         <div className={style.commentInfo}>
-          <p className={style.commentUserName}>{userName}</p>
+          <NavLink className={style.link} to={`/profile/${authorId}`}>
+            <p className={style.commentUserName}>{userName}</p>
+          </NavLink>
           <p className={style.commentDate}>{formatDate(date)}</p>
           <p className={style.commentText}>{text}</p>
         </div>

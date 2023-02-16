@@ -1,7 +1,7 @@
 .singleUser {
   display: flex;
   margin-bottom: 30px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   border-bottom: 2px solid lightgray;
 }
 
@@ -16,7 +16,6 @@
   height: 80px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 20px;
 }
 
 .followBtn {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProfile } from '../../api/api';
+import { getProfile, getFollowed, postFollow, deleteFollow } from '../../api/api';
 import { getPosts } from './../../api/mockapi';
 
 import Posts from './Posts/Posts';
@@ -10,9 +10,10 @@ import Error from '../Error/Error';
 
 import style from './Profile.module.css';
 
-const Profile = ({ authorisedUserProfile, noUserPhoto }) => {
+const Profile = ({ isAuthorized, authorisedUserProfile, noUserPhoto }) => {
 
   const [profile, setProfile] = useState({});
+  const [followed, setFollowed] = useState(false)
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isPostsLoading, setIsPostsLoading] = useState(true)
@@ -30,13 +31,48 @@ const Profile = ({ authorisedUserProfile, noUserPhoto }) => {
       })
   }, [params.id])
 
+
+  useEffect(() => {
+    if (profile.userId) {
+      getFollowed(profile.userId)
+        .then(data => setFollowed(data.data))
+    }
+  }, [profile.userId, followed])
+
   useEffect(() => {
     if (profile.fullName) {
+      setIsPostsLoading(true)
       getPosts(profile.fullName)
         .then(data => setPosts(data))
         .finally(() => setIsPostsLoading(false))
     }
   }, [profile])
+
+
+  const followUser = (button, id) => {
+    button.disabled = true
+
+    postFollow(id)
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          setFollowed(true)
+        }
+      })
+      .catch((error) => setError(error.message))
+      .finally(() => button.disabled = false)
+  }
+
+  const unfollowUser = (button, id) => {
+    button.disabled = true
+    deleteFollow(id)
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          setFollowed(false)
+        }
+      })
+      .catch((error) => setError(error.message))
+      .finaly(() => button.disabled = false)
+  }
 
   if (error) {
     return (
@@ -49,7 +85,7 @@ const Profile = ({ authorisedUserProfile, noUserPhoto }) => {
       <img className={style.profileImg} src='https://static.vecteezy.com/system/resources/previews/001/946/569/original/abstract-geometric-hexagons-yellow-background-with-diagonal-striped-lines-free-vector.jpg' alt="profileImg" />
       {isLoading ? <Preloader />
         : <div className={style.profileInner}>
-          <ProfileInfo profile={profile} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />
+          <ProfileInfo isAuthorized={isAuthorized} profile={profile} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} followUser={followUser} unfollowUser={unfollowUser} followed={followed} />
           <Posts authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} profile={profile} posts={posts} setPosts={setPosts} isPostsLoading={isPostsLoading} />
         </div>
       }

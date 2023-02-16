@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { getUserImg } from '../../../../api/api';
 import { changeComments, getPosts } from '../../../../api/mockapi';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,15 +13,15 @@ import SingleComment from './SingleComment/SingleComment';
 import style from './SinglePost.module.css';
 
 
-const SinglePost = ({ profile, posts, postText, date, userName, likesCount, id, likePostHandler, commentButtonHandler, deletePostHandler, authorisedUserProfile, noUserPhoto, commentsCount, authorizedUserLikedPost, setPosts, comments }) => {
+const SinglePost = ({ profile, posts, authorId, postText, date, userName, likesCount, id, likePostHandler, commentButtonHandler, deletePostHandler, authorisedUserProfile, noUserPhoto, commentsCount, authorizedUserLikedPost, setPosts, comments }) => {
 
   const params = useParams();
   const [src, setSrc] = useState('')
 
   useEffect(() => {
-    getUserImg(userName)
+    getUserImg(authorId)
       .then((result) => setSrc(result))
-  }, [userName])
+  }, [authorId])
 
   const showDeleteButton = (authorisedUserProfile.userId === +params.id || authorisedUserProfile.fullName === userName) ? true : false
 
@@ -32,6 +32,7 @@ const SinglePost = ({ profile, posts, postText, date, userName, likesCount, id, 
 
     const newComment = {
       id: uuidv4(),
+      authorId: authorisedUserProfile.userId,
       userName: authorisedUserProfile.fullName,
       text: text,
       date: new Date(),
@@ -102,9 +103,13 @@ const SinglePost = ({ profile, posts, postText, date, userName, likesCount, id, 
   return (
     <div className={style.singlePost} id={id} comments={comments}>
       <div className={style.singlePostInner}>
-        <img className={style.singlePostImg} src={src || noUserPhoto} alt="userImg" />
+        <NavLink className={style.link} to={`/profile/${authorId}`}>
+          <img className={style.singlePostImg} src={src || noUserPhoto} alt="userImg" />
+        </NavLink>
         <div className={style.singlePostInfo}>
-          <p className={style.postUserName}>{userName}</p>
+          <NavLink className={style.link} to={`/profile/${authorId}`}>
+            <p className={style.postUserName}>{userName}</p>
+          </NavLink >
           <p className={style.postDate}>{formatDate(date)}</p>
         </div>
         {showDeleteButton ? <RiDeleteBinLine className={style.deleteIcon} onClick={() => deletePostHandler(id)} /> : null}
@@ -129,13 +134,13 @@ const SinglePost = ({ profile, posts, postText, date, userName, likesCount, id, 
         </div>
       </div>
       <div>
-        {comments.map(({ id, text, date, likesCount, userName, whoLiked }) => {
+        {comments.map(({ id, authorId, text, date, likesCount, userName, whoLiked }) => {
           let authorizedUserLikedComment = false
           if (whoLiked.includes(authorisedUserProfile.userId)) {
             authorizedUserLikedComment = true
           }
           return (
-            <SingleComment key={id} id={id} text={text} date={date} likesCount={likesCount} userName={userName} deleteCommentHandler={deleteCommentHandler} likeCommentHandler={likeCommentHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} authorizedUserLikedComment={authorizedUserLikedComment} />
+            <SingleComment key={id} id={id} authorId={authorId} text={text} date={date} likesCount={likesCount} userName={userName} deleteCommentHandler={deleteCommentHandler} likeCommentHandler={likeCommentHandler} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} authorizedUserLikedComment={authorizedUserLikedComment} />
           )
         })}
       </div>

@@ -4,6 +4,12 @@
   margin-bottom: 100px;
 }
 
+.profileInfoLeft {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
 .profileMainInfo {
   width: 100%;
 }
@@ -17,7 +23,28 @@
   width: 240px;
   height: 300px;
   object-fit: cover;
-  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.followBtn {
+  background-color: #9ACD32;
+  border: none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.followBtn:hover {
+  background-color: #4f6919;
+}
+
+.followBtn:disabled {
+  background-color: lightgray;
+  cursor: auto;
 }
 
 .userName {

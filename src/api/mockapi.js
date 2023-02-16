@@ -5,7 +5,7 @@ const instanse = axios.create({
 });
 
 export const getPosts = (fullName) => {
-  return instanse.get(`posts?profileOwner=${fullName}&sortby=date&order=desc`)
+  return instanse.get(`posts?profileOwnerName=${fullName}&sortby=date&order=desc`)
     .then(response => {
       return response.data
     })

@@ -87,3 +87,10 @@ export const getUserImg = (id) => {
       return response.data.photos.small
     })
 }
+
+export const getFriends = () => {
+  return instanse.get('users?friend=true&count=100')
+    .then(response => {
+      return response.data
+    })
+}

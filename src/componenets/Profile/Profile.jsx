@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getProfile, getFollowed, postFollow, deleteFollow } from '../../api/api';
 import { getPosts } from './../../api/mockapi';
 
+import Following from './Following/Following';
 import Posts from './Posts/Posts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Preloader from '../Preloader/Preloader';
@@ -56,10 +57,10 @@ const Profile = ({ isAuthorized, authorisedUserProfile, noUserPhoto }) => {
       .then(response => {
         if (response.data.resultCode === 0) {
           setFollowed(true)
+          button.disabled = false
         }
       })
       .catch((error) => setError(error.message))
-      .finally(() => button.disabled = false)
   }
 
   const unfollowUser = (button, id) => {
@@ -68,10 +69,10 @@ const Profile = ({ isAuthorized, authorisedUserProfile, noUserPhoto }) => {
       .then(response => {
         if (response.data.resultCode === 0) {
           setFollowed(false)
+          button.disabled = false
         }
       })
       .catch((error) => setError(error.message))
-      .finaly(() => button.disabled = false)
   }
 
   if (error) {
@@ -86,6 +87,7 @@ const Profile = ({ isAuthorized, authorisedUserProfile, noUserPhoto }) => {
       {isLoading ? <Preloader />
         : <div className={style.profileInner}>
           <ProfileInfo isAuthorized={isAuthorized} profile={profile} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} followUser={followUser} unfollowUser={unfollowUser} followed={followed} />
+          {authorisedUserProfile.userId === profile.userId ? <Following noUserPhoto={noUserPhoto} /> : null}
           <Posts authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} profile={profile} posts={posts} setPosts={setPosts} isPostsLoading={isPostsLoading} />
         </div>
       }

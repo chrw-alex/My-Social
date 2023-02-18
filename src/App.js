@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { getMe, getProfile } from './api/api';
+import { getMe, getProfile, getMessagesCount } from './api/api';
 
 import Messages from './componenets/Messages/Messages';
 import Header from './componenets/Header/Header';
@@ -22,6 +22,7 @@ function App() {
   const [authorisedUserProfile, setAuthorizedUserProfile] = useState({})
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [messagesCount, setMessagesCount] = useState(0)
 
   const noUserPhoto = 'https://avatars.mds.yandex.net/i?id=384a55164f8927b70d0d86e5dd1ec4a6ba880567-6997554-images-thumbs&n=13';
 
@@ -47,6 +48,14 @@ function App() {
     }
   }, [authorizedUser, isAuthorized])
 
+  useEffect(() => {
+    if (isAuthorized) {
+      getMessagesCount()
+        .then(data => setMessagesCount(data.data))
+    }
+  }, [isAuthorized])
+
+
   if (error) {
     return (
       <Error />
@@ -56,21 +65,24 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header authorizedUser={authorizedUser} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />
-        <div className='main'>
-          <Nav authorizedUser={authorizedUser} isAuthorized={isAuthorized} />
-          <Routes>
-            <Route path='/' element={isLoading ? <Preloader />
-              : <Navigate to={isAuthorized ? `/profile/${authorizedUser.id}` : '/login'} replace />} />
-            <Route path={'/profile/:id'} element={<Profile isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
-            <Route path='/login' element={<LoginPage setIsAuthorized={setIsAuthorized} setAuthorizedUser={setAuthorizedUser} />} />
-            <Route path='/messages/*' element={<Messages isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/settings' element={<Settings authorisedUserProfile={authorisedUserProfile} />} />
-          </Routes>
+        <Header authorisedUserProfile={authorisedUserProfile} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />
+        <div className='appInner'>
+          <Nav authorizedUser={authorizedUser} isAuthorized={isAuthorized} messagesCount={messagesCount} />
+          <div className='main'>
+            <Routes>
+              <Route path='/' element={isLoading ? <Preloader />
+                : <Navigate to={isAuthorized ? `/profile/${authorizedUser.id}` : '/login'} replace />} />
+              <Route path={'/profile/:id'} element={<Profile isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
+              <Route path='/login' element={<LoginPage setIsAuthorized={setIsAuthorized} setAuthorizedUser={setAuthorizedUser} />} />
+              <Route path='/messages/*' element={<Messages isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
+              <Route path='/messages/:id' element={<Messages isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
+              <Route path='/users' element={<Users />} />
+              <Route path='/settings' element={<Settings authorisedUserProfile={authorisedUserProfile} />} />
+            </Routes>
+          </div>
         </div>
       </div>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

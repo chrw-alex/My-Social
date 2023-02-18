@@ -1,37 +1,40 @@
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-
+import { useRef, useEffect } from 'react'
+import { getMessages, deleteMessage } from '../../../api/api';
+import { useParams } from 'react-router-dom';
 import SingleMessage from './SingleMessage/SingleMessage';
-import MessagesForm from './MessagesForm/MessagesForm';
 import style from './SingleDialog.module.css';
 
-const SingleDialog = ({ authorisedUserProfile, noUserPhoto }) => {
+const SingleDialog = ({ authorisedUserProfile, noUserPhoto, messages, setMessages }) => {
 
-  const [messages, setMessages] = useState([]);
+  const params = useParams()
+  const messagesEndRef = useRef(null)
 
-  const addMessageHandler = (text) => {
-    const newMessage = {
-      text: text,
-      id: uuidv4(),
-      date: new Date(),
-    }
-    setMessages([...messages, newMessage]);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
 
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages]);
+
   const deleteMessageHandler = (id) => {
-    setMessages(messages.filter((message) => message.id !== id))
+    deleteMessage(id)
+      .then(() => {
+        getMessages(params.id)
+          .then(data => setMessages(data.items))
+      })
   }
 
   return (
     <div className={style.singleDialog}>
-      <div className={style.singleDialogTop}>
-        {messages.map(({ id, text, date }) => {
+      <div>
+        {messages.map(({ id, body, addedAt, recipientId, senderId, senderName, viewed }) => {
           return (
-            <SingleMessage authorisedUserProfile={authorisedUserProfile} text={text} key={id} id={id} date={date} deleteMessageHandler={deleteMessageHandler} noUserPhoto={noUserPhoto} />
+            <SingleMessage authorisedUserProfile={authorisedUserProfile} key={id} id={id} body={body} addedAt={addedAt} senderId={senderId} recipientId={recipientId} senderName={senderName} viewed={viewed} deleteMessageHandler={deleteMessageHandler} noUserPhoto={noUserPhoto} />
           )
         })}
+        <div ref={messagesEndRef} />
       </div>
-      <MessagesForm className={style.MessagesForm} addMessage={addMessageHandler} />
     </div>
   )
 }

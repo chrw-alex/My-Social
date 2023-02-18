@@ -94,3 +94,29 @@ export const getFriends = () => {
       return response.data
     })
 }
+
+export const getDialogs = () => {
+  return instanse.get('dialogs')
+    .then(response => {
+      return response.data
+    })
+}
+
+export const getMessages = (id) => {
+  return instanse.get(`dialogs/${id}/messages`)
+    .then(response => {
+      return response.data
+    })
+}
+
+export const sendMessage = (id, body) => {
+  return instanse.post(`dialogs/${id}/messages`, { body })
+}
+
+export const deleteMessage = (messageId) => {
+  return instanse.delete(`dialogs/messages/${messageId}`)
+}
+
+export const getMessagesCount = () => {
+  return instanse.get('dialogs/messages/new/count')
+}

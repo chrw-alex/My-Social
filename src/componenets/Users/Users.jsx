@@ -12,6 +12,7 @@ import style from './Users.module.css';
 const Users = () => {
 
   const [users, setUsers] = useState([]);
+  const [totalCount, setTotalCount] = useState()
   const [text, setText] = useState('')
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,10 +20,13 @@ const Users = () => {
   const [isShowMoreLoading, setIsShowMoreLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const isShowMoreVisible = totalCount === users.length ? false : true
+
   useEffect(() => {
     getUsers(1, 10)
       .then((data) => {
         setUsers(data.items)
+        setTotalCount(data.totalCount)
       })
       .catch((error) => setError(error.message))
       .finally(() => {
@@ -51,7 +55,7 @@ const Users = () => {
   return (
     <div className={style.users}>
       <div className={style.usersInner}>
-        <UsersSearch users={users} setUsers={setUsers} text={text} setText={setText} />
+        <UsersSearch users={users} setUsers={setUsers} text={text} setText={setText} setTotalCount={setTotalCount} />
         <h4 className={style.usersTitle}>Users</h4>
         {isLoading
           ? <Preloader />
@@ -65,7 +69,7 @@ const Users = () => {
             ? <Preloader />
             : (isDisabled
               ? null
-              : <Button className={style.showMoreButton} text='Show more' onClick={showMoreHandler} />
+              : (isShowMoreVisible ? <Button className={style.showMoreButton} text='Show more' onClick={showMoreHandler} /> : null)
             )}
         </div>
       </div>

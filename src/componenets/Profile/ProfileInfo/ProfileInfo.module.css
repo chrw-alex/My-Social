@@ -24,6 +24,7 @@
   height: 300px;
   object-fit: cover;
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .followBtn {
@@ -47,10 +48,15 @@
   cursor: auto;
 }
 
+.link {
+  text-decoration: none;
+  color: #fff;
+}
+
 .userName {
   font-size: 26px;
   color: rgb(128, 126, 126);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin: 0;
   margin-bottom: 4px;
 }

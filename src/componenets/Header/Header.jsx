@@ -2,14 +2,13 @@ import Login from './Login/Login';
 
 import style from './Header.module.css';
 
-const Header = ({ authorizedUser, setAuthorizedUser, isAuthorized, setIsAuthorized }) => {
+const Header = ({ authorisedUserProfile, setAuthorizedUser, isAuthorized, setIsAuthorized }) => {
   return (
     <div className={style.header}>
       <div className={style.logoInner}>
         <img className={style.logo} src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Android_O_Preview_Logo.png/1024px-Android_O_Preview_Logo.png" alt="logo" />
-        <h1 className={style.name}>My Social</h1>
       </div>
-      <Login authorizedUser={authorizedUser} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />
+      <Login authorisedUserProfile={authorisedUserProfile} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import Status from './Status/Status'
 import Contacts from './Contacts/Contacts'
 import { ReactComponent as YesSvg } from '../../../assets/img/yes.svg'
@@ -19,7 +20,9 @@ const ProfileInfo = ({ isAuthorized, profile, authorisedUserProfile, noUserPhoto
             {followed
               ? <Button className={style.followBtn} text="Unfollow" onClick={(event) => unfollowUser(event.target, profile.userId)} />
               : <Button className={style.followBtn} text="Follow" disabled={isAuthorized ? false : true} onClick={(event) => followUser(event.target, profile.userId, profile.fullName)} />}
-            <Button className={style.followBtn} text="Message" disabled={isAuthorized ? false : true} />
+            <button className={style.followBtn} disabled={isAuthorized ? false : true}>
+              <NavLink className={style.link} to={`/messages/${profile.userId}`}>Message</NavLink>
+            </button>
           </>)
           : null
         }

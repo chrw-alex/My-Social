@@ -1,12 +1,12 @@
 .nav {
-  width: 15%;
+  width: 20%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  padding: 20px;
   margin-right: 20px;
   background-color: #9ACD32;
-  padding-left: 20px;
-  padding-right: 20px;
+  border-radius: 10px;
 }
 
 .nav div {
@@ -25,6 +25,14 @@
 .link:hover,
 .settingsLink:hover {
   text-decoration: underline;
+}
+
+.messages {
+  margin-right: 8px;
+}
+
+.messagesCount {
+  font-weight: bold;
 }
 
 .separatedDiv {

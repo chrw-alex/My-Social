@@ -4,7 +4,7 @@ import { ReactComponent as LogoutSvg } from '../../../assets/img/logout.svg'
 import { logoutUser } from '../../../api/api'
 import style from './Login.module.css'
 
-const Login = ({ authorizedUser, setAuthorizedUser, isAuthorized, setIsAuthorized }) => {
+const Login = ({ authorisedUserProfile, setAuthorizedUser, isAuthorized, setIsAuthorized }) => {
 
   const navigate = useNavigate()
 
@@ -23,11 +23,11 @@ const Login = ({ authorizedUser, setAuthorizedUser, isAuthorized, setIsAuthorize
     <div>
       {isAuthorized
         ? (<div className={style.logout}>
-          <p className={style.userName}>{authorizedUser.login}</p>
+          <p className={style.userName}>{authorisedUserProfile.fullName}</p>
           <LogoutSvg className={style.logoutBtn} onClick={logout} />
         </div>
         )
-        : (<button className={style.login}>
+        : (<button className={style.loginBtn}>
           <NavLink className={style.loginLink} to='login'>Login</NavLink>
         </button>)}
     </div>

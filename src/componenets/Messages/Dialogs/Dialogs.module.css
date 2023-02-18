@@ -1,6 +1,44 @@
 .dialogs {
-  width: 20%;
-  padding-left: 40px;
-  border-right: 2px solid lightgray;
-  margin-right: 20px;
+  height: 70%;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dialogsItemsInner {
+  height: 450px;
+  overflow-y: auto;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.buttonInner {
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+}
+
+.button {
+  width: 160px;
+  padding: 8px;
+  background-color: #9ACD32;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  transition: background-color .2s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #4f6919;
+}
+
+.button:disabled {
+  background-color: lightgray;
+  cursor: default;
 }

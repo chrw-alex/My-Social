@@ -1,15 +1,15 @@
 import { Form, Field } from 'react-final-form';
-import { composeValidators, maxLengthCreator, minLength1 } from '../../../../additional/validators';
-import Button from './../../../Button/Button';
+import { composeValidators, maxLengthCreator, minLength1 } from '../../../additional/validators';
+import Button from '../../Button/Button';
 
 import style from './MessagesForm.module.css';
 
 const maxLength1000 = maxLengthCreator(1000)
 
-const MessagesForm = ({ addMessage }) => {
+const MessagesForm = ({ addMessageHandler }) => {
 
   const onSubmit = ({ messageText }) => {
-    addMessage(messageText);
+    addMessageHandler(messageText);
   }
 
   return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getUserImg } from '../../../../api/api';
 import { changeComments, getPosts } from '../../../../api/mockapi';
 import { v4 as uuidv4 } from 'uuid';
@@ -103,13 +103,13 @@ const SinglePost = ({ profile, posts, authorId, postText, date, userName, likesC
   return (
     <div className={style.singlePost} id={id} comments={comments}>
       <div className={style.singlePostInner}>
-        <NavLink className={style.link} to={`/profile/${authorId}`}>
+        <Link className={style.link} to={`/profile/${authorId}`}>
           <img className={style.singlePostImg} src={src || noUserPhoto} alt="userImg" />
-        </NavLink>
+        </Link>
         <div className={style.singlePostInfo}>
-          <NavLink className={style.link} to={`/profile/${authorId}`}>
+          <Link className={style.link} to={`/profile/${authorId}`}>
             <p className={style.postUserName}>{userName}</p>
-          </NavLink >
+          </Link >
           <p className={style.postDate}>{formatDate(date)}</p>
         </div>
         {showDeleteButton ? <RiDeleteBinLine className={style.deleteIcon} onClick={() => deletePostHandler(id)} /> : null}

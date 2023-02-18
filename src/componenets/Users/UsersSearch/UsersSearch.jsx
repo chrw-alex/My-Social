@@ -4,7 +4,7 @@ import { searchUsersbyName } from '../../../api/api'
 import PreloaderSmall from '../../PreloaderSmall/PreloaderSmall'
 import style from './UsersSearch.module.css'
 
-const UsersSearch = ({ setUsers, text, setText }) => {
+const UsersSearch = ({ setUsers, text, setText, setTotalCount }) => {
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -14,6 +14,7 @@ const UsersSearch = ({ setUsers, text, setText }) => {
     searchUsersbyName(1, 10, text)
       .then((data) => {
         setUsers(data.items)
+        setTotalCount(data.totalCount)
       })
       .finally(() => {
         setIsLoading(false)

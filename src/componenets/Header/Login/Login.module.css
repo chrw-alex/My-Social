@@ -1,7 +1,7 @@
 .userName {
   font-size: 22px;
   color: #fff;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin-right: 20px;
 }
 
@@ -10,20 +10,20 @@
   align-items: center;
 }
 
-.login,
+.loginBtn,
 .logoutBtn {
   cursor: pointer;
   transition: transform .2s ease;
 }
 
-.login {
+.loginBtn {
   padding: 6px 20px;
   background-color: #fff;
   border: none;
   border-radius: 2px;
 }
 
-.login:hover,
+.loginBtn:hover,
 .logoutBtn:hover {
   transform: scale(1.2);
 }

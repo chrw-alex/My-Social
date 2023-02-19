@@ -89,3 +89,9 @@
 .jobIcon {
   transform: translateY(6px);
 }
+
+@media screen and (max-width: 768px) {
+  .userName {
+    font-size: 30px;
+  }
+}

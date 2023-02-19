@@ -13,5 +13,10 @@
   overflow-x: scroll;
   padding: 0;
   list-style: none;
-  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 576px) {
+  .friends {
+    height: fit-content;
+  }
 }

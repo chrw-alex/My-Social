@@ -46,3 +46,14 @@
   background-color: lightgray;
   cursor: default;
 }
+
+@media screen and (max-width: 576px) {
+  .dialogs {
+    min-height: fit-content;
+    max-height: 600px;
+  }
+
+  .button {
+    font-size: 16px;
+  }
+}

@@ -8,3 +8,14 @@
   height: 50px;
   border-radius: 50%;
 }
+
+@media screen and (max-width: 576px) {
+  .friendsItem {
+    margin-right: 40px;
+  }
+
+  .userImg {
+    width: 70px;
+    height: 70px;
+  }
+}

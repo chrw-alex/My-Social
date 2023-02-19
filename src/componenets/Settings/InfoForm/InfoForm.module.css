@@ -81,3 +81,9 @@
   background-color: lightgray;
   cursor: default;
 }
+
+@media screen and (max-width: 576px) {
+  .form {
+    width: 90%;
+  }
+}

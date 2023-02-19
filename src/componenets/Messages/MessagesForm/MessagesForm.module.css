@@ -62,3 +62,21 @@
   background-color: lightgray;
   cursor: default;
 }
+
+@media screen and (max-width: 768px) {
+
+  .textarea {
+    height: 80px;
+  }
+
+  .button {
+    margin-top: auto;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .button {
+    width: 30%;
+    font-size: 16px;
+  }
+}

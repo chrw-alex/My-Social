@@ -8,7 +8,9 @@ export const maxLengthCreator = (maxLength) => (value) => {
   }
 }
 
-export const minLength1 = value => (value ? undefined : 'Min length is 1 symbol')
+export const minLength1 = value => (value ? undefined : 'Min length is 1 symbol!')
+
+export const checkSpacesValidator = (str) => str.trim() !== '' ? undefined : 'Text contains only spaces!'
 
 export const composeValidators = (...validators) => (value) =>
   validators.reduce((error, validator) => error || validator(value), undefined);

@@ -83,9 +83,9 @@ const Profile = ({ isAuthorized, authorisedUserProfile, noUserPhoto }) => {
 
   return (
     <div className={style.profile}>
-      <img className={style.profileImg} src='https://static.vecteezy.com/system/resources/previews/001/946/569/original/abstract-geometric-hexagons-yellow-background-with-diagonal-striped-lines-free-vector.jpg' alt="profileImg" />
       {isLoading ? <Preloader />
         : <div className={style.profileInner}>
+          <img className={style.profileImg} src='https://static.vecteezy.com/system/resources/previews/001/946/569/original/abstract-geometric-hexagons-yellow-background-with-diagonal-striped-lines-free-vector.jpg' alt="profileImg" />
           <ProfileInfo isAuthorized={isAuthorized} profile={profile} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} followUser={followUser} unfollowUser={unfollowUser} followed={followed} />
           {authorisedUserProfile.userId === profile.userId ? <Following noUserPhoto={noUserPhoto} /> : null}
           <Posts authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} profile={profile} posts={posts} setPosts={setPosts} isPostsLoading={isPostsLoading} />

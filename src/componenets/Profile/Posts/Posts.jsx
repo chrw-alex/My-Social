@@ -74,7 +74,6 @@ const Posts = ({ authorisedUserProfile, noUserPhoto, profile, posts, setPosts, i
 
   return (
     <div className={style.posts}>
-      <h3 className={style.myPostsTitle}>Posts</h3>
       <PostsForm addPostHandler={addPostHandler} />
       {isPostsLoading ? <Preloader />
         : posts.map(({ id, authorId, postText, userName, date, likesCount, commentsCount, whoLiked, comments }) => {

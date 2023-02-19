@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const instanse = axios.create({
   withCredentials: true,
+  origin: true,
   headers: {
     'API-KEY': '2d03c615-d6dd-4611-aea7-50381ef37ebd'
   },

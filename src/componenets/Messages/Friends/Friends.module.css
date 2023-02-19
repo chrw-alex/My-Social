@@ -1,7 +1,11 @@
 .friends {
   width: 100%;
-  padding-left: 20px;
-  border-bottom: 2px solid lightgray;
+  height: 25%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  margin-bottom: 20px;
 }
 
 .friends ul {

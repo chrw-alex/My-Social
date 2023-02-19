@@ -4,19 +4,15 @@ import style from './Friends.module.css';
 
 const Friends = ({ friends, noUserPhoto }) => {
   return (
-    <div>
-      <div className={style.friends}>
-        <ul>
-          {friends.map(({ id, name, photos }) => {
-            return (
-              <FriendsItem key={id} id={id} name={name} photos={photos} noUserPhoto={noUserPhoto} />
-            )
-          })}
-        </ul>
-      </div>
+    <div className={style.friends}>
+      <ul>
+        {friends.map(({ id, name, photos }) => {
+          return (
+            <FriendsItem key={id} id={id} name={name} photos={photos} noUserPhoto={noUserPhoto} />
+          )
+        })}
+      </ul>
     </div>
-
-
   )
 }
 

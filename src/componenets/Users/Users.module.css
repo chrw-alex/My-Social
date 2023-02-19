@@ -1,7 +1,9 @@
 .users {
   width: 100%;
-  padding-bottom: 100px;
+  padding-bottom: 40px;
   padding-top: 20px;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 .usersInner {

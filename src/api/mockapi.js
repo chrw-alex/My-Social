@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instanse = axios.create({
-  baseURL: 'https://63e651637eef5b2233835792.mockapi.io/my-social/'
+  baseURL: 'https://63e651637eef5b2233835792.mockapi.io/my-social/',
+  origin: true
 });
 
 export const getPosts = (fullName) => {

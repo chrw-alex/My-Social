@@ -60,10 +60,10 @@ const Messages = ({ authorisedUserProfile, noUserPhoto }) => {
         {params.id ?
           (isLoading
             ? <Preloader />
-            : <div>
+            : <>
               <SingleDialog authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} messages={messages} setMessages={setMessages} />
               <MessagesForm className={style.MessagesForm} addMessageHandler={addMessageHandler} />
-            </div>
+            </>
           )
           : null
         }

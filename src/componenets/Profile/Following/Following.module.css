@@ -22,3 +22,10 @@
   color: rgb(128, 126, 126, .7);
   letter-spacing: 1px;
 }
+
+@media screen and (max-width: 480px) {
+  .following {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+}

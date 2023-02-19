@@ -19,3 +19,15 @@
     height: 70px;
   }
 }
+
+@media screen and (max-width: 480px) {
+
+  .friendsItem {
+    margin-right: 10px;
+  }
+
+  .userImg {
+    width: 40px;
+    height: 40px;
+  }
+}

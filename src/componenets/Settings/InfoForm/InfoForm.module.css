@@ -86,4 +86,37 @@
   .form {
     width: 90%;
   }
+
+  .formInner p {
+    width: 35%;
+  }
+
+  .input,
+  .textarea {
+    width: 65%;
+  }
+
+  .button {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .formInner {
+    flex-direction: column;
+  }
+
+  .formInner p {
+    width: 100%;
+  }
+
+  .input,
+  .textarea {
+    width: 100%;
+  }
+
+  .button {
+    width: 60%;
+  }
 }

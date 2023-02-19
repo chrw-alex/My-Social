@@ -1,6 +1,7 @@
 .singlePost {
   margin-bottom: 20px;
-  padding: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-bottom: 1px solid lightgray;
 }
 
@@ -36,6 +37,7 @@
 
 .postText {
   width: 90%;
+  word-break: break-all;
 }
 
 .postDate {

@@ -39,3 +39,9 @@
 .loginLink:hover {
   color: rgba(128, 126, 126, 1);
 }
+
+@media screen and (max-width: 480px) {
+  .userName {
+    font-size: 18px;
+  }
+}

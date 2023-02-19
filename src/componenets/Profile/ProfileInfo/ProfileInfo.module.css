@@ -95,3 +95,41 @@
     font-size: 30px;
   }
 }
+
+@media screen and (max-width: 576px) {
+
+  .profileInfo {
+    flex-direction: column;
+  }
+
+  .profileInfoLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+    margin-right: 0;
+  }
+
+  .profileAvatar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
+
+  .followBtn {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profileAvatar {
+    width: 200px;
+    height: 200px;
+  }
+
+  .followBtn {
+    width: 60%;
+  }
+}

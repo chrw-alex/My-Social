@@ -20,3 +20,10 @@
     height: fit-content;
   }
 }
+
+@media screen and (max-width: 480px) {
+
+  .friends ul {
+    margin: 0;
+  }
+}

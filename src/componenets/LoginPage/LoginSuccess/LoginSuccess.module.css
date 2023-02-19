@@ -16,3 +16,9 @@
   text-align: center;
   margin-right: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .loginSuccess {
+    width: 80%;
+  }
+}

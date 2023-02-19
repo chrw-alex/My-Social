@@ -56,4 +56,14 @@
   .form {
     width: 90%;
   }
+
+  .button {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .button {
+    width: 60%;
+  }
 }

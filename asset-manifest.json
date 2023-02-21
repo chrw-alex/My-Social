@@ -1,11 +1,14 @@
 {
   "files": {
-    "main.css": "/social-network/static/css/main.d1453cec.css",
-    "main.js": "/social-network/static/js/main.62be98cc.js",
+    "main.css": "/social-network/static/css/main.db8aaa86.css",
+    "main.js": "/social-network/static/js/main.2aafc327.js",
     "static/js/787.ce586ac3.chunk.js": "/social-network/static/js/787.ce586ac3.chunk.js",
     "static/media/instagram.svg": "/social-network/static/media/instagram.46ef20632600d8eb05f4630f16663fd7.svg",
     "static/media/refresh.svg": "/social-network/static/media/refresh.bed2a823ad7216399675b731f6acc003.svg",
+    "static/media/settings.svg": "/social-network/static/media/settings.4df48ca363228c63ccb46da23c5cd0ee.svg",
     "static/media/twitter.svg": "/social-network/static/media/twitter.3e3e7f2a85b4f4f6f2902009139d9366.svg",
+    "static/media/users.svg": "/social-network/static/media/users.5482f275bcfbc3e476ee100767e143f5.svg",
+    "static/media/messages.svg": "/social-network/static/media/messages.6fce0b5131baee79682d3066208be7a1.svg",
     "static/media/vk.svg": "/social-network/static/media/vk.4b68a396aa84d6ea559eb985e25f0574.svg",
     "static/media/success.svg": "/social-network/static/media/success.2b86bce7857f1cc409df5e1c886ca7de.svg",
     "static/media/web.svg": "/social-network/static/media/web.cfcc38f5946f58ad0a27358ff645b7b0.svg",
@@ -18,12 +21,13 @@
     "static/media/required.svg": "/social-network/static/media/required.95271e2f5bab434be1e8e40abdb8757c.svg",
     "index.html": "/social-network/index.html",
     "static/media/no.svg": "/social-network/static/media/no.8effbe746c3604b22267e2f59344dedb.svg",
-    "main.d1453cec.css.map": "/social-network/static/css/main.d1453cec.css.map",
-    "main.62be98cc.js.map": "/social-network/static/js/main.62be98cc.js.map",
+    "static/media/profile.svg": "/social-network/static/media/profile.55753228bf88f08035bc045fefacfb45.svg",
+    "main.db8aaa86.css.map": "/social-network/static/css/main.db8aaa86.css.map",
+    "main.2aafc327.js.map": "/social-network/static/js/main.2aafc327.js.map",
     "787.ce586ac3.chunk.js.map": "/social-network/static/js/787.ce586ac3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d1453cec.css",
-    "static/js/main.62be98cc.js"
+    "static/css/main.db8aaa86.css",
+    "static/js/main.2aafc327.js"
   ]
 }

@@ -29,11 +29,13 @@ const MessagesForm = ({ addMessageHandler }) => {
                 </div>
               )}
             </Field>
-            <Button
-              className={style.button}
-              text='Send message'
-              onClick={() => setTimeout(form.restart, 500)}
-            />
+            <div className={style.buttonInner}>
+              <Button
+                className={style.button}
+                text='Send message'
+                onClick={() => setTimeout(form.restart, 500)}
+              />
+            </div>
           </form>
         )}
       />

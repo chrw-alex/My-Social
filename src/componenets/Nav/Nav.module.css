@@ -22,8 +22,12 @@
   transition: text-decoration .2s ease;
 }
 
-.messages {
+.linkText {
   margin-right: 8px;
+}
+
+.navIcon {
+  display: none;
 }
 
 .messagesCount {
@@ -82,7 +86,22 @@
   }
 
   .link {
-    font-size: 16px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .linkText {
+    display: none;
+  }
+
+  .navIcon {
+    display: block;
+  }
+
+  .messagesIcon {
+    margin-right: 6px;
   }
 
   .messages {

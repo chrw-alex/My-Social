@@ -65,7 +65,7 @@ function App() {
   return (
     <HashRouter>
       <div className="App">
-        <Header authorisedUserProfile={authorisedUserProfile} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} authorizedUser={authorizedUser} />
+        <Header authorisedUserProfile={authorisedUserProfile} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} authorizedUser={authorizedUser} isLoading={isLoading} />
         <div className='appInner'>
           <Nav authorizedUser={authorizedUser} isAuthorized={isAuthorized} messagesCount={messagesCount} />
           <div className='main'>

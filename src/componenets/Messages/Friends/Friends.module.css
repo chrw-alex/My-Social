@@ -15,6 +15,12 @@
   list-style: none;
 }
 
+@media screen and (max-width: 992px) {
+  .friends {
+    height: 15%;
+  }
+}
+
 @media screen and (max-width: 576px) {
   .friends {
     height: fit-content;

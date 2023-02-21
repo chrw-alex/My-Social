@@ -6,8 +6,8 @@
   margin-bottom: 14px;
 }
 
-.contactsLink {
-  display: flex;
+.contactsLinks {
+  overflow-y: auto;
 }
 
 .contactsIcon {

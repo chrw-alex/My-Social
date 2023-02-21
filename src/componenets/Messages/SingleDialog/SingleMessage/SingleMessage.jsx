@@ -23,8 +23,10 @@ const SingleMessage = ({ authorisedUserProfile, body, id, addedAt, senderId, rec
       </NavLink>
       <div className={style.messageMain}>
         <div className={style.messageInfo}>
-          <p className={style.messageUserName}>{senderName}</p>
-          <p className={style.messageDate}>{formatDate(addedAt)}</p>
+          <div>
+            <p className={style.messageUserName}>{senderName}</p>
+            <p className={style.messageDate}>{formatDate(addedAt)}</p>
+          </div>
           <RiDeleteBinLine className={style.messageDeleteIcon} onClick={() => deleteMessageHandler(id)} />
         </div>
         <div>

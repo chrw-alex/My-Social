@@ -4,8 +4,10 @@ import style from './LoginSuccess.module.css'
 const LoginSuccess = () => {
   return (
     <div className={style.loginSuccess}>
-      <p className={style.loginSuccessText}>Authorization is successfull</p>
-      <SuccessSvg />
+      <div>
+        <p className={style.loginSuccessText}>Authorization is successfull</p>
+        <SuccessSvg />
+      </div>
     </div>
   )
 }

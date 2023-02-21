@@ -29,6 +29,11 @@
   align-items: center;
 }
 
+.messageInfo div {
+  display: flex;
+  align-items: center;
+}
+
 .messageUserName {
   font-size: 16px;
   font-weight: 500;
@@ -61,5 +66,12 @@
 @media screen and (max-width: 576px) {
   .singleMessage {
     margin-bottom: 4px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .messageInfo div {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

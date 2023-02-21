@@ -1,10 +1,11 @@
 import { NavLink, useNavigate } from 'react-router-dom'
+import { logoutUser } from '../../../api/api'
 
 import { ReactComponent as LogoutSvg } from '../../../assets/img/logout.svg'
-import { logoutUser } from '../../../api/api'
+import PreloaderSmall from '../../PreloaderSmall/PreloaderSmall'
 import style from './Login.module.css'
 
-const Login = ({ authorisedUserProfile, setAuthorizedUser, isAuthorized, setIsAuthorized }) => {
+const Login = ({ authorisedUserProfile, setAuthorizedUser, isAuthorized, setIsAuthorized, isLoading }) => {
 
   const navigate = useNavigate()
 
@@ -21,15 +22,18 @@ const Login = ({ authorisedUserProfile, setAuthorizedUser, isAuthorized, setIsAu
 
   return (
     <div>
-      {isAuthorized
-        ? (<div className={style.logout}>
-          <p className={style.userName}>{authorisedUserProfile.fullName}</p>
-          <LogoutSvg className={style.logoutBtn} onClick={logout} />
-        </div>
-        )
-        : (<button className={style.loginBtn}>
-          <NavLink className={style.loginLink} to='login'>Login</NavLink>
-        </button>)}
+      {isLoading ?
+        <PreloaderSmall />
+        : (isAuthorized
+          ? (<div className={style.logout}>
+            <p className={style.userName}>{authorisedUserProfile.fullName}</p>
+            <LogoutSvg className={style.logoutBtn} onClick={logout} />
+          </div>
+          )
+          : (<button className={style.loginBtn}>
+            <NavLink className={style.loginLink} to='login'>Login</NavLink>
+          </button>))
+      }
     </div>
   )
 }

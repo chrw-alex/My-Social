@@ -129,7 +129,7 @@ const InfoForm = ({ authorisedUserProfile }) => {
               {({ input }) => (
                 <div className={style.formInner}>
                   <p>YouTube: </p>
-                  <input {...input} className={style.input} type='text' placeholder='enter your yoytube' />
+                  <input {...input} className={style.input} type='text' placeholder='enter your youtube' />
                 </div>
               )}
             </Field>

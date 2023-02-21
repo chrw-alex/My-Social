@@ -25,3 +25,19 @@
   text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
     0px -5px 35px rgba(255, 255, 255, 0.3);
 }
+
+@media screen and (max-width: 992px) {
+  .nav {
+    border-radius: 2px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    width: 40px;
+  }
+}

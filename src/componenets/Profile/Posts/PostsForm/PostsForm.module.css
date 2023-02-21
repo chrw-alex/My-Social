@@ -70,6 +70,19 @@
 }
 
 @media screen and (max-width: 576px) {
+
+  .postsForm {
+    margin-bottom: 20px;
+  }
+
+  .textarea {
+    margin-bottom: 0px;
+  }
+
+  .error {
+    font-size: 12px;
+  }
+
   .button {
     width: 35%;
   }

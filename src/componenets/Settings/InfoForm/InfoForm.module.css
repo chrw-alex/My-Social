@@ -84,17 +84,26 @@
 
 @media screen and (max-width: 576px) {
   .form {
-    width: 90%;
+    width: 96%;
   }
 
   .formInner p {
     width: 35%;
   }
 
+  .subtitle {
+    margin-bottom: 16px;
+  }
+
   .input,
   .textarea {
     width: 65%;
   }
+
+  .formInnerTextarea {
+    margin-bottom: 20px;
+  }
+
 
   .button {
     width: 35%;
@@ -109,6 +118,9 @@
 
   .formInner p {
     width: 100%;
+    padding-left: 6px;
+    margin-bottom: 2px;
+    opacity: .7;
   }
 
   .input,

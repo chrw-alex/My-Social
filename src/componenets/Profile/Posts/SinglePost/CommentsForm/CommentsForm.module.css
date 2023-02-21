@@ -3,7 +3,7 @@
   visibility: hidden;
   display: flex;
   align-items: flex-start;
-  padding-left: 70px;
+  padding-left: 10px;
 }
 
 .commentsFormImg {
@@ -26,13 +26,12 @@
 }
 
 .commentsTextarea {
-  width: 95%;
+  width: 98%;
   padding-top: 6px;
   padding-left: 10px;
   background-color: rgb(245, 245, 245);
   border: none;
   border-radius: 10px;
-  border-radius: 6px;
   resize: none;
 }
 
@@ -72,4 +71,20 @@
 
 .sendIcon:hover {
   opacity: 1;
+}
+
+@media screen and (max-width: 576px) {
+  .comments {
+    padding-left: 16px;
+  }
+
+  .commentsFormImg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .error {
+    font-size: 12px;
+    padding-left: 0;
+  }
 }

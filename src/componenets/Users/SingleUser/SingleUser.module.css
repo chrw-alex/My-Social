@@ -1,5 +1,6 @@
 .singleUser {
   display: flex;
+  align-items: center;
   margin-bottom: 30px;
   padding-bottom: 10px;
   border-bottom: 2px solid lightgray;
@@ -40,7 +41,6 @@
 
 .userRight {
   width: 80%;
-  padding-top: 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -53,7 +53,6 @@
 .userName {
   font-size: 18px;
   margin: 0;
-  margin-bottom: 6px;
 }
 
 .userStatus {
@@ -64,4 +63,20 @@
 .userCity {
   font-size: 16px;
   color: rgb(128, 126, 126);
+}
+
+@media screen and (max-width: 576px) {
+  .singleUser {
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .userLeft {
+    margin-right: 20px;
+  }
+
+  .userImg {
+    width: 60px;
+    height: 60px;
+  }
 }

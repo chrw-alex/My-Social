@@ -75,9 +75,18 @@
 }
 
 @media screen and (max-width: 576px) {
+
+  .textarea {
+    margin-bottom: 0;
+  }
+
   .button {
     width: 30%;
     font-size: 16px;
+  }
+
+  .error {
+    font-size: 12px;
   }
 }
 

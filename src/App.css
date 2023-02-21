@@ -31,3 +31,9 @@
     padding-right: 10px;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .main {
+    padding-bottom: 80px;
+  }
+}

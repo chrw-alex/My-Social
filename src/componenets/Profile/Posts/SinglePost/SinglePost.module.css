@@ -1,7 +1,8 @@
 .singlePost {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid lightgray;
 }
 
@@ -9,7 +10,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .link {
@@ -38,6 +38,8 @@
 .postText {
   width: 90%;
   word-break: break-all;
+  padding-left: 70px;
+  margin-bottom: 10px;
 }
 
 .postDate {
@@ -65,15 +67,10 @@
   align-items: center;
 }
 
-.postText {
-  padding-left: 70px;
-  margin-bottom: 20px;
-}
-
 .actions {
   display: flex;
   padding-left: 66px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .likeAction,
@@ -107,7 +104,7 @@
 }
 
 .heartIcon {
-  transform: translateY(1px);
+  transform: translateY(2px);
 }
 
 .heartIcon:hover {
@@ -131,4 +128,32 @@
 
 .commentIcon:hover {
   opacity: 1;
+}
+
+@media screen and (max-width: 576px) {
+  .singlePost {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .postDate {
+    font-size: 12px;
+  }
+
+  .postText {
+    margin-bottom: 8px;
+  }
+
+  .actions {
+    margin-bottom: 10px;
+  }
+
+  .likeAction,
+  .commentAction {
+    padding: 1px 6px;
+  }
+
+  .likeAction {
+    margin-right: 6px;
+  }
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { getFriends, getDialogs, getMessages, sendMessage } from '../../api/api';
+import { getFriends, getDialogs, getMessages, sendMessage, getMessagesCount } from '../../api/api';
 import Friends from './Friends/Friends';
 import SingleDialog from './SingleDialog/SingleDialog';
 import MessagesForm from './MessagesForm/MessagesForm';
@@ -9,7 +9,7 @@ import style from './Messages.module.css';
 import Preloader from '../Preloader/Preloader';
 import Dialogs from './Dialogs/Dialogs';
 
-const Messages = ({ authorisedUserProfile, noUserPhoto }) => {
+const Messages = ({ authorisedUserProfile, noUserPhoto, setMessagesCount }) => {
 
   const params = useParams()
   const [friends, setFriends] = useState([])
@@ -38,9 +38,13 @@ const Messages = ({ authorisedUserProfile, noUserPhoto }) => {
         .then(data => {
           setMessages(data.items)
         })
+        .then(() => {
+          getMessagesCount()
+            .then(data => setMessagesCount(data.data))
+        })
         .finally(() => setIsLoading(false))
     }
-  }, [params.id])
+  }, [params.id, setMessagesCount])
 
   const addMessageHandler = (text) => {
     sendMessage(params.id, text)

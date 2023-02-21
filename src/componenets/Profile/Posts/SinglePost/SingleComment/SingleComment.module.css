@@ -92,8 +92,22 @@
   transform: translateY(-3px);
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
   .singleComment {
-    padding-left: 0px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  .commentMain {
+    padding-bottom: 8px;
+  }
+
+  .commentUserName {
+    margin-bottom: 0;
+  }
+
+  .commentDate {
+    font-size: 12px;
+    margin-bottom: 0px;
   }
 }

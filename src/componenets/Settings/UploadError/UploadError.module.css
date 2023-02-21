@@ -6,9 +6,17 @@
 }
 
 .error p {
+  display: block;
+  text-align: center;
   font-size: 18px;
   letter-spacing: 2px;
   margin-right: 10px;
   word-wrap: break-word;
   color: red;
+}
+
+@media screen and (max-width: 576px) {
+  .error p {
+    font-size: 14px;
+  }
 }

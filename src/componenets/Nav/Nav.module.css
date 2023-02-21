@@ -27,7 +27,7 @@
 }
 
 .messagesCount {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .separatedDiv {
@@ -72,7 +72,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
   .nav {
     height: 60px;
   }
@@ -83,5 +83,9 @@
 
   .link {
     font-size: 16px;
+  }
+
+  .messages {
+    margin-right: 4px;
   }
 }

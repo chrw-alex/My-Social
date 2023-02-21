@@ -92,7 +92,7 @@
 
 @media screen and (max-width: 768px) {
   .userName {
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 
@@ -102,12 +102,16 @@
     flex-direction: column;
   }
 
+  .userInfo {
+    margin-bottom: 20px;
+  }
+
   .profileInfoLeft {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-bottom: 1px solid lightgray;
     margin-right: 0;
   }

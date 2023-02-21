@@ -15,7 +15,7 @@
   margin-bottom: 26px;
   font-size: 20px;
   color: rgb(128, 126, 126, .7);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .showMore {
@@ -37,4 +37,24 @@
 
 .showMoreButton:hover {
   background-color: #4f6919;
+}
+
+@media screen and (max-width: 576px) {
+
+  .users {
+    padding-bottom: 0;
+  }
+
+  .usersInner {
+    width: 92%;
+  }
+
+  .usersTitle {
+    margin-bottom: 16px;
+  }
+
+  .showMore {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

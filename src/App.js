@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { getMe, getProfile, getMessagesCount } from './api/api';
 
 import Messages from './componenets/Messages/Messages';
@@ -63,9 +63,9 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
-        <Header authorisedUserProfile={authorisedUserProfile} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />
+        <Header authorisedUserProfile={authorisedUserProfile} setAuthorizedUser={setAuthorizedUser} isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} authorizedUser={authorizedUser} />
         <div className='appInner'>
           <Nav authorizedUser={authorizedUser} isAuthorized={isAuthorized} messagesCount={messagesCount} />
           <div className='main'>
@@ -75,14 +75,14 @@ function App() {
               <Route path={'/profile/:id'} element={<Profile isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
               <Route path='/login' element={<LoginPage setIsAuthorized={setIsAuthorized} setAuthorizedUser={setAuthorizedUser} />} />
               <Route path='/messages/*' element={<Messages isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
-              <Route path='/messages/:id' element={<Messages isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} />} />
+              <Route path='/messages/:id' element={<Messages isAuthorized={isAuthorized} authorisedUserProfile={authorisedUserProfile} noUserPhoto={noUserPhoto} setMessagesCount={setMessagesCount} />} />
               <Route path='/users' element={<Users />} />
               <Route path='/settings' element={<Settings authorisedUserProfile={authorisedUserProfile} />} />
             </Routes>
           </div>
         </div>
       </div>
-    </BrowserRouter >
+    </HashRouter >
   );
 }
 

@@ -1,6 +1,7 @@
 import { Form, Field } from 'react-final-form';
 import { RiSendPlane2Line } from 'react-icons/ri';
-import { maxLengthCreator, minLength1, composeValidators } from '../../../../../additional/validators'
+import { maxLengthCreator, composeValidators, checkSpacesValidator } from '../../../../../additional/validators'
+import checkSpaces from '../../../../../additional/checkSpaces';
 
 import style from './CommentsForm.module.css';
 
@@ -11,7 +12,9 @@ const CommentsForm = ({ id, addCommentHandler, authorisedUserProfile, noUserPhot
   const currentPostId = id
 
   const onSubmit = ({ commentText }) => {
-    addCommentHandler(currentPostId, commentText);
+    if (1 < commentText?.length < 500 && checkSpaces(commentText)) {
+      addCommentHandler(currentPostId, commentText);
+    }
   }
 
   return (
@@ -19,9 +22,9 @@ const CommentsForm = ({ id, addCommentHandler, authorisedUserProfile, noUserPhot
       <img className={style.commentsFormImg} src={authorisedUserProfile?.photos?.large || noUserPhoto} alt="userImg" />
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, form, invalid }) => (
+        render={({ handleSubmit, form }) => (
           <form className={style.commentsForm} onSubmit={handleSubmit} >
-            <Field name='commentText' validate={composeValidators(maxLength300, minLength1)}>
+            <Field name='commentText' validate={composeValidators(maxLength300, checkSpacesValidator)}>
               {({ input, meta }) => (
                 <div>
                   <textarea {...input} className={style.commentsTextarea} placeholder='your comment...' />
@@ -29,7 +32,7 @@ const CommentsForm = ({ id, addCommentHandler, authorisedUserProfile, noUserPhot
                 </div>
               )}
             </Field>
-            <button className={style.sendCommentButton} disabled={invalid} onClick={() => setTimeout(form.restart, 500)}>
+            <button className={style.sendCommentButton} onClick={() => setTimeout(form.restart, 500)}>
               <RiSendPlane2Line
                 className={style.sendIcon}
               />

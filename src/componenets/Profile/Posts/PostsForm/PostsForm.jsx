@@ -1,5 +1,5 @@
 import { Form, Field } from 'react-final-form';
-import { maxLengthCreator, minLength1, composeValidators, checkSpacesValidator } from '../../../../additional/validators';
+import { maxLengthCreator, composeValidators, checkSpacesValidator } from '../../../../additional/validators';
 import checkSpaces from '../../../../additional/checkSpaces';
 import Button from '../../../Button/Button';
 
@@ -10,7 +10,7 @@ const maxLength500 = maxLengthCreator(500)
 const PostsForm = ({ addPostHandler }) => {
 
   const onSubmit = ({ postText }) => {
-    if (1 < postText.length < 500 && checkSpaces(postText)) {
+    if (1 < postText?.length < 500 && checkSpaces(postText)) {
       addPostHandler(postText);
     }
   }
@@ -22,7 +22,7 @@ const PostsForm = ({ addPostHandler }) => {
         onSubmit={onSubmit}
         render={({ handleSubmit, form }) => (
           <form className={style.form} onSubmit={handleSubmit}>
-            <Field name='postText' validate={composeValidators(maxLength500, minLength1, checkSpacesValidator)}>
+            <Field name='postText' validate={composeValidators(maxLength500, checkSpacesValidator)}>
               {({ input, meta }) => (
                 <div className={style.formInner}>
                   <textarea {...input} className={style.textarea} placeholder='your news...' />

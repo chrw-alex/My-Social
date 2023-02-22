@@ -1,5 +1,5 @@
 import { Form, Field } from 'react-final-form';
-import { composeValidators, maxLengthCreator, minLength1, checkSpacesValidator } from '../../../additional/validators';
+import { composeValidators, maxLengthCreator, checkSpacesValidator } from '../../../additional/validators';
 import checkSpaces from '../../../additional/checkSpaces';
 import Button from '../../Button/Button';
 
@@ -10,7 +10,7 @@ const maxLength1000 = maxLengthCreator(1000)
 const MessagesForm = ({ addMessageHandler }) => {
 
   const onSubmit = ({ messageText }) => {
-    if (1 < messageText.length < 1000 && checkSpaces(messageText)) {
+    if (1 < messageText?.length < 1000 && checkSpaces(messageText)) {
       addMessageHandler(messageText);
     }
   }
@@ -21,7 +21,7 @@ const MessagesForm = ({ addMessageHandler }) => {
         onSubmit={onSubmit}
         render={({ handleSubmit, form }) => (
           <form className={style.form} onSubmit={handleSubmit}>
-            <Field name='messageText' validate={composeValidators(maxLength1000, minLength1, checkSpacesValidator)}>
+            <Field name='messageText' validate={composeValidators(maxLength1000, checkSpacesValidator)}>
               {({ input, meta }) => (
                 <div className={style.formInner}>
                   <textarea {...input} className={style.textarea} placeholder="enter message's text" />

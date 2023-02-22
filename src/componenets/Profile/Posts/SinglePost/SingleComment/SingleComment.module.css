@@ -57,6 +57,7 @@
 .likeActions {
   margin-top: auto;
   display: flex;
+  align-items: flex-end;
 }
 
 .commentHeartIcon,
@@ -72,13 +73,10 @@
   transition: opacity .2s ease;
 }
 
-.commentHeartIcon {
-  margin-left: 6px;
-}
 
-.commentHeartIcon:hover,
-.commentDeleteIcon:hover {
-  opacity: 1;
+.commentHeartIcon {
+  margin-left: 2px;
+  transform: translateY(-1px);
 }
 
 .commentHeartIconActive {
@@ -87,9 +85,8 @@
 }
 
 .likesCount {
-  font-size: 16px;
+  font-size: 14px;
   opacity: .6;
-  transform: translateY(-3px);
 }
 
 @media screen and (max-width: 576px) {
@@ -110,4 +107,13 @@
     font-size: 12px;
     margin-bottom: 0px;
   }
+}
+
+
+@media (hover: hover) {
+  .commentHeartIcon:hover,
+  .commentDeleteIcon:hover {
+    opacity: 1;
+  }
+  
 }

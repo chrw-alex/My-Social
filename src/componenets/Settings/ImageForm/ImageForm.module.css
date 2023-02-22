@@ -43,10 +43,6 @@
   transition: background-color .2s ease;
 }
 
-.button:hover {
-  background-color: #4f6919;
-}
-
 .button:disabled {
   background-color: lightgray;
   cursor: default;
@@ -65,5 +61,11 @@
 @media screen and (max-width: 480px) {
   .button {
     width: 60%;
+  }
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: #4f6919;
   }
 }

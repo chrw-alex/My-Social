@@ -65,10 +65,6 @@
   cursor: pointer;
 }
 
-.button:hover {
-  background-color: #4f6919;
-}
-
 .button:disabled {
   background-color: lightgray;
   cursor: default;
@@ -92,5 +88,11 @@
 
   .error {
     font-size: 12px;
+  }
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: #4f6919;
   }
 }

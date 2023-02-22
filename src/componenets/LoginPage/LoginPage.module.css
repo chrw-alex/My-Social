@@ -104,10 +104,6 @@
   cursor: pointer;
 }
 
-.refreshIcon:hover {
-  opacity: 1;
-}
-
 .captchaInput {
   width: 80%;
 }
@@ -126,10 +122,6 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color .2s ease;
-}
-
-.button:hover {
-  background-color: #4f6919;
 }
 
 .button:disabled {
@@ -162,4 +154,15 @@
   .button {
     width: 60%;
   }
+}
+
+@media (hover: hover) {
+  .refreshIcon:hover {
+    opacity: 1;
+  }
+
+  .button:hover {
+    background-color: #4f6919;
+  }
+
 }

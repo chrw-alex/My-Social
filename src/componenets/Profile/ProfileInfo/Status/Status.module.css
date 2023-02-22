@@ -48,12 +48,14 @@
   transition: background-color .2s ease;
 }
 
-.button:hover {
-  background-color: #4f6919;
-}
-
 @media screen and (max-width: 576px) {
   .status {
     margin-bottom: 10px;
+  }
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: #4f6919;
   }
 }

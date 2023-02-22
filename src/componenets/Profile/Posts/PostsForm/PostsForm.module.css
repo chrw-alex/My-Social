@@ -54,10 +54,6 @@
   cursor: pointer;
 }
 
-.button:hover {
-  background-color: #4f6919;
-}
-
 .button:disabled {
   background-color: lightgray;
   cursor: default;
@@ -91,5 +87,11 @@
 @media screen and (max-width: 480px) {
   .button {
     width: 50%;
+  }
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: #4f6919;
   }
 }

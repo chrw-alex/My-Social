@@ -32,10 +32,6 @@
   transition: transform .2s ease;
 }
 
-.searchIcon:hover {
-  transform: scale(1.2);
-}
-
 @media screen and (max-width: 576px) {
 
   .search {
@@ -51,5 +47,11 @@
     width: 24px;
     height: 24px;
     transform: translateY(2px);
+  }
+}
+
+@media (hover: hover) {
+  .searchIcon:hover {
+    transform: scale(1.2);
   }
 }

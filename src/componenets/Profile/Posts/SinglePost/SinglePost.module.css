@@ -58,10 +58,6 @@
 
 }
 
-.deleteIcon:hover {
-  opacity: 1;
-}
-
 .post {
   display: flex;
   align-items: center;
@@ -76,6 +72,7 @@
 .likeAction,
 .commentAction {
   display: flex;
+  align-items: flex-end;
   padding: 3px 8px;
   background-color: rgb(245, 245, 245);
   border-radius: 10px;
@@ -87,10 +84,10 @@
 
 .likesCount,
 .commentsCount {
-  margin-left: 10px;
-  font-size: 16px;
+  margin-left: 4px;
+  font-size: 18px;
   color: rgb(0, 0, 0);
-  opacity: .9;
+  opacity: .7;
 }
 
 .heartIcon,
@@ -101,14 +98,6 @@
   opacity: .4;
   cursor: pointer;
   transition: opacity .2s ease;
-}
-
-.heartIcon {
-  transform: translateY(2px);
-}
-
-.heartIcon:hover {
-  opacity: 1;
 }
 
 .heartIcon:disabled {
@@ -124,10 +113,6 @@
 .heartIconActive:disabled {
   opacity: .2;
   cursor: default;
-}
-
-.commentIcon:hover {
-  opacity: 1;
 }
 
 @media screen and (max-width: 576px) {
@@ -155,5 +140,19 @@
 
   .likeAction {
     margin-right: 6px;
+  }
+}
+
+@media (hover: hover) {
+  .deleteIcon:hover {
+    opacity: 1;
+  }
+
+  .heartIcon:hover {
+    opacity: 1;
+  }
+
+  .commentIcon:hover {
+    opacity: 1;
   }
 }

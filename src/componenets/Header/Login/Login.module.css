@@ -23,11 +23,6 @@
   border-radius: 6px;
 }
 
-.loginBtn:hover,
-.logoutBtn:hover {
-  transform: scale(1.2);
-}
-
 .loginLink {
   font-size: 18px;
   color: rgba(128, 126, 126, .8);
@@ -43,5 +38,13 @@
 @media screen and (max-width: 480px) {
   .userName {
     font-size: 18px;
+  }
+}
+
+@media (hover: hover) {
+
+  .loginBtn:hover,
+  .logoutBtn:hover {
+    transform: scale(1.2);
   }
 }

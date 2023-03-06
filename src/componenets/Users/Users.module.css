@@ -35,10 +35,6 @@
   transition: background-color .2s ease;
 }
 
-.showMoreButton:hover {
-  background-color: #4f6919;
-}
-
 @media screen and (max-width: 576px) {
 
   .users {
@@ -56,5 +52,11 @@
   .showMore {
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+}
+
+@media (hover: hover) {
+  .showMoreButton:hover {
+    background-color: #4f6919;
   }
 }

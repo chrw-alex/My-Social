@@ -104,7 +104,7 @@ export const getDialogs = () => {
 }
 
 export const getMessages = (id) => {
-  return instanse.get(`dialogs/${id}/messages`)
+  return instanse.get(`dialogs/${id}/messages?count=20`)
     .then(response => {
       return response.data
     })

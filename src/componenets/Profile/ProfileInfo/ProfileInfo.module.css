@@ -43,10 +43,6 @@
   transition: background-color 0.2s ease;
 }
 
-.followBtn:hover {
-  background-color: #4f6919;
-}
-
 .followBtn:disabled {
   background-color: lightgray;
   cursor: auto;
@@ -135,5 +131,11 @@
 
   .followBtn {
     width: 60%;
+  }
+}
+
+@media (hover: hover) {
+  .followBtn:hover {
+    background-color: #4f6919;
   }
 }
